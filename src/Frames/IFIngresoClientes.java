@@ -19,6 +19,15 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -74,6 +83,7 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
         txtGiro = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        btnGenerar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -107,16 +117,18 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getColumn(0).setHeaderValue("Nombre");
-        jTable1.getColumnModel().getColumn(1).setHeaderValue("Rut");
-        jTable1.getColumnModel().getColumn(2).setHeaderValue("Razón");
-        jTable1.getColumnModel().getColumn(3).setHeaderValue("Dirección");
-        jTable1.getColumnModel().getColumn(4).setHeaderValue("Comuna");
-        jTable1.getColumnModel().getColumn(5).setHeaderValue("Ciudad");
-        jTable1.getColumnModel().getColumn(6).setHeaderValue("Fono");
-        jTable1.getColumnModel().getColumn(7).setHeaderValue("Email");
-        jTable1.getColumnModel().getColumn(8).setHeaderValue("Web");
-        jTable1.getColumnModel().getColumn(9).setHeaderValue("Giro");
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setHeaderValue("Nombre");
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("Rut");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("Razón");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("Dirección");
+            jTable1.getColumnModel().getColumn(4).setHeaderValue("Comuna");
+            jTable1.getColumnModel().getColumn(5).setHeaderValue("Ciudad");
+            jTable1.getColumnModel().getColumn(6).setHeaderValue("Fono");
+            jTable1.getColumnModel().getColumn(7).setHeaderValue("Email");
+            jTable1.getColumnModel().getColumn(8).setHeaderValue("Web");
+            jTable1.getColumnModel().getColumn(9).setHeaderValue("Giro");
+        }
 
         jLabel9.setText("WEB");
 
@@ -135,6 +147,13 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Dirección");
 
+        btnGenerar.setText("Generar");
+        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,7 +166,9 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(btnIngresar)
-                        .addGap(336, 336, 336)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnGenerar)
+                        .addGap(233, 233, 233)
                         .addComponent(cbxEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -249,7 +270,9 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
                             .addComponent(jLabel7)
                             .addComponent(txtFono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(btnIngresar)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnIngresar)
+                            .addComponent(btnGenerar))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
                 .addContainerGap())
@@ -386,7 +409,32 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxEliminarActionPerformed
 
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+        
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            conn.setSchema("EDSON");
+            
+            String ubicacion = System.getProperty("user.dir")+"/src/Reportes/cliente.jasper";
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(ubicacion);
+            JasperPrint print = JasperFillManager.fillReport(jasperReport, null,conn);
+            JasperViewer view = new JasperViewer(print,false);
+            view.setVisible(true);
+            
+            
+            
+            
+           
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_btnGenerarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGenerar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JComboBox cbxEliminar;
     private javax.swing.JLabel jLabel1;
