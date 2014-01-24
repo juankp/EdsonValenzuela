@@ -117,18 +117,6 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setHeaderValue("Nombre");
-            jTable1.getColumnModel().getColumn(1).setHeaderValue("Rut");
-            jTable1.getColumnModel().getColumn(2).setHeaderValue("Razón");
-            jTable1.getColumnModel().getColumn(3).setHeaderValue("Dirección");
-            jTable1.getColumnModel().getColumn(4).setHeaderValue("Comuna");
-            jTable1.getColumnModel().getColumn(5).setHeaderValue("Ciudad");
-            jTable1.getColumnModel().getColumn(6).setHeaderValue("Fono");
-            jTable1.getColumnModel().getColumn(7).setHeaderValue("Email");
-            jTable1.getColumnModel().getColumn(8).setHeaderValue("Web");
-            jTable1.getColumnModel().getColumn(9).setHeaderValue("Giro");
-        }
 
         jLabel9.setText("WEB");
 
@@ -304,12 +292,6 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
             nuevo.web = txtWeb.getText().toUpperCase();
             nuevo.razon = txtRazon.getText().toUpperCase();
 
-//            while(esPalabra(nuevo.nombre)== false) //verifica si el nombre tiene solo letras
-//            {
-//                JOptionPane.showMessageDialog(null,"mensaje de error", "título de la ventana", JOptionPane.ERROR_MESSAGE);
-//                txtNombre.setText("");
-//                nuevo.nombre = txtNombre.getText().toUpperCase();
-//            }
 
             name = nuevo.nombre;
             rut = nuevo.rut;
@@ -423,11 +405,7 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
             JasperViewer view = new JasperViewer(print,false);
             view.setVisible(true);
             
-            
-            
-            
            
-            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }

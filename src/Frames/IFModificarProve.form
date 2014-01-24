@@ -212,7 +212,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtRutAct">
       <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -220,65 +219,41 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtRazonProv">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRazonProvActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtGiroProv">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGiroProvActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtComunaProv">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtComunaProvActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFonoProv">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFonoProvActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCiudadProv">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCiudadProvActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDirProv">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDirProvActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmailProv">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailProvActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtWebProv">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtWebProvActionPerformed"/>
       </Events>

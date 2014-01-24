@@ -298,7 +298,7 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         
         
-        String rut = txtRut.getText();
+        String rut = cbxnombre.getSelectedItem().toString();
         try {
             
             

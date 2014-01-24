@@ -91,7 +91,6 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
             }
         });
 
-        txtRutAct.setEditable(false);
         txtRutAct.setEnabled(false);
         txtRutAct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,56 +98,48 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
             }
         });
 
-        txtRazonProv.setEditable(false);
         txtRazonProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRazonProvActionPerformed(evt);
             }
         });
 
-        txtGiroProv.setEditable(false);
         txtGiroProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtGiroProvActionPerformed(evt);
             }
         });
 
-        txtComunaProv.setEditable(false);
         txtComunaProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtComunaProvActionPerformed(evt);
             }
         });
 
-        txtFonoProv.setEditable(false);
         txtFonoProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFonoProvActionPerformed(evt);
             }
         });
 
-        txtCiudadProv.setEditable(false);
         txtCiudadProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCiudadProvActionPerformed(evt);
             }
         });
 
-        txtDirProv.setEditable(false);
         txtDirProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDirProvActionPerformed(evt);
             }
         });
 
-        txtEmailProv.setEditable(false);
         txtEmailProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailProvActionPerformed(evt);
             }
         });
 
-        txtWebProv.setEditable(false);
         txtWebProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtWebProvActionPerformed(evt);
@@ -367,17 +358,10 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
                 txtWebProv.setText(rs.getString("WEB_PROV"));
 
             }
-           txtRazonProv.isEditable();
-            txtGiroProv.isEditable();
-            txtDirProv.isEditable();
-            txtComunaProv.isEditable();
-            txtCiudadProv.isEditable();
-            txtFonoProv.isEditable();
-            txtEmailProv.isEditable();
-            txtWebProv.isEditable();
+          
             conn.close();
-            cbxProv.setModel(modeloCombo);
-            refreshcombo();
+           
+            
 
         } catch (Exception e) {
         }
