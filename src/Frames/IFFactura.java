@@ -4,6 +4,7 @@
  */
 package Frames;
 
+import Codigo.Numero_a_Letra;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -28,9 +30,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class IFFactura extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form IFFactura
-     */
+    private  Numero_a_Letra NL = new  Numero_a_Letra();
     public IFFactura() throws ClassNotFoundException, SQLException {
         initComponents();
         refreshcombo();
@@ -42,6 +42,7 @@ public class IFFactura extends javax.swing.JInternalFrame {
         String resultado2 = mes.format(fecha);
         String resultado3 = anio.format(fecha);
         lblfecha.setText(resultado1+" de "+resultado2+ " de "+resultado3);
+        
 
 
         try {
@@ -123,6 +124,10 @@ public class IFFactura extends javax.swing.JInternalFrame {
         txtciudad = new javax.swing.JTextField();
         txtoc = new javax.swing.JTextField();
         btnGenerar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaFactura = new javax.swing.JTable();
+        btnAgregarFila = new javax.swing.JButton();
+        btnQuitarFila = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -318,6 +323,31 @@ public class IFFactura extends javax.swing.JInternalFrame {
             }
         });
 
+        tablaFactura.setAutoCreateRowSorter(true);
+        tablaFactura.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "#", "CANTIDAD", "DESCRIPCION", "P. UNITARIO", "TOTAL"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaFactura);
+
+        btnAgregarFila.setText("+");
+        btnAgregarFila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarFilaActionPerformed(evt);
+            }
+        });
+
+        btnQuitarFila.setText("-");
+        btnQuitarFila.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitarFilaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -325,14 +355,23 @@ public class IFFactura extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 770, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 826, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()
-                .addGap(323, 323, 323)
-                .addComponent(btnGenerar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAgregarFila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnQuitarFila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(368, 368, 368)
+                        .addComponent(btnGenerar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -342,9 +381,16 @@ public class IFFactura extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAgregarFila)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnQuitarFila)))
+                .addGap(44, 44, 44)
                 .addComponent(btnGenerar)
-                .addGap(106, 106, 106))
+                .addContainerGap(243, Short.MAX_VALUE))
         );
 
         pack();
@@ -399,13 +445,29 @@ public class IFFactura extends javax.swing.JInternalFrame {
 //            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
 //            Connection conn = DriverManager.getConnection(url);
 //            conn.setSchema("EDSON");
-            
+            double iva = (Integer.parseInt(tablaFactura.getValueAt(0, 4).toString()))*0.19;
+            double total2 = Integer.parseInt(tablaFactura.getValueAt(0, 4).toString()) *1.19;
             String ubicacion = System.getProperty("user.dir")+"/src/Reportes/Factura.jasper";
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(ubicacion);
             Map parametro = new HashMap();
             parametro.put("Direccion", txtdireccion.getText());
             parametro.put("rut", txtrut.getText());
             parametro.put("senores", (String)cbxsenores.getSelectedItem());
+            parametro.put("giro", txtgiro.getText());
+            parametro.put("ciudad", txtciudad.getText());
+            parametro.put("telefono", txttelefono.getText());
+            parametro.put("comuna", txtcomuna.getText());
+            parametro.put("cantidad", tablaFactura.getValueAt(0, 1).toString());
+            parametro.put("descripcion", tablaFactura.getValueAt(0, 2).toString());
+            parametro.put("punitario", tablaFactura.getValueAt(0, 3).toString());
+            parametro.put("total", tablaFactura.getValueAt(0, 4).toString());
+            parametro.put("numeroletras", NL.Convertir(Double.toString(total2),true));
+            parametro.put("condicion", txtcond.getText());
+            parametro.put("oc", txtoc.getText());
+            parametro.put("guia", txtguia.getText());
+            parametro.put("neto", tablaFactura.getValueAt(0, 4).toString());
+            parametro.put("iva", Double.toString(iva));
+            parametro.put("total2", Double.toString(total2));
             
             JasperPrint print = JasperFillManager.fillReport(jasperReport, parametro, new JREmptyDataSource());
             JasperViewer view = new JasperViewer(print,false);
@@ -417,8 +479,24 @@ public class IFFactura extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnGenerarActionPerformed
 
+    private void btnAgregarFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarFilaActionPerformed
+        DefaultTableModel temp = (DefaultTableModel) tablaFactura.getModel();
+        Object nuevo[]= {temp.getRowCount(),"",""};
+        temp.addRow(nuevo);
+    }//GEN-LAST:event_btnAgregarFilaActionPerformed
+
+    private void btnQuitarFilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarFilaActionPerformed
+        try
+        {
+            DefaultTableModel temp = (DefaultTableModel) tablaFactura.getModel();
+            temp.removeRow(temp.getRowCount()-1);
+        }catch(ArrayIndexOutOfBoundsException e){;}
+    }//GEN-LAST:event_btnQuitarFilaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarFila;
     private javax.swing.JButton btnGenerar;
+    private javax.swing.JButton btnQuitarFila;
     private javax.swing.JComboBox cbxsenores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -436,7 +514,9 @@ public class IFFactura extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblfecha;
+    private javax.swing.JTable tablaFactura;
     private javax.swing.JTextField txtciudad;
     private javax.swing.JTextField txtcomuna;
     private javax.swing.JTextField txtcond;

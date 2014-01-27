@@ -90,6 +90,7 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("INGRESO CLIENTES ::: TRANSPORTES EDSON");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setText("Nombre");
 

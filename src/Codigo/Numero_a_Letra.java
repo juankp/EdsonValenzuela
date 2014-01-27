@@ -1,9 +1,6 @@
 package Codigo;
 import java.util.regex.Pattern;
-/**
- * @web http://jc-mouse.blogspot.com/
- * @author Mouse
- */
+
 public class Numero_a_Letra {
 
 private final String[] UNIDADES = {"", "un ", "dos ", "tres ", "cuatro ", "cinco ", "seis ", "siete ", "ocho ", "nueve "};
@@ -30,7 +27,7 @@ private final String[] UNIDADES = {"", "un ", "dos ", "tres ", "cuatro ", "cinco
             //se divide el numero 0000000,00 -> entero y decimal
             String Num[] = numero.split(",");
             //de da formato al numero decimal
-            parte_decimal = Num[1] + "/100 Bolivianos.";
+            parte_decimal = Num[1] + "pesos chilenos.";
             //se convierte el numero a literal
             if (Integer.parseInt(Num[0]) == 0) {//si el valor es cero
                 literal = "cero ";
@@ -47,9 +44,9 @@ private final String[] UNIDADES = {"", "un ", "dos ", "tres ", "cuatro ", "cinco
             }
             //devuelve el resultado en mayusculas o minusculas
             if (mayusculas) {
-                return (literal + parte_decimal).toUpperCase();
+                return (literal + "pesos chilenos").toUpperCase();
             } else {
-                return (literal + parte_decimal);
+                return (literal + "pesos chilenos");
             }
         } else {//error, no se puede convertir
             return literal = null;

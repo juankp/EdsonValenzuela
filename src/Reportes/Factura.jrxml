@@ -6,53 +6,178 @@
 	<parameter name="Direccion" class="java.lang.String"/>
 	<parameter name="rut" class="java.lang.String"/>
 	<parameter name="senores" class="java.lang.String"/>
+	<parameter name="comuna" class="java.lang.String"/>
+	<parameter name="telefono" class="java.lang.String"/>
+	<parameter name="ciudad" class="java.lang.String"/>
+	<parameter name="giro" class="java.lang.String"/>
+	<parameter name="descripcion" class="java.lang.String"/>
+	<parameter name="cantidad" class="java.lang.String"/>
+	<parameter name="punitario" class="java.lang.String"/>
+	<parameter name="total" class="java.lang.String"/>
+	<parameter name="numeroletras" class="java.lang.String"/>
+	<parameter name="condicion" class="java.lang.String"/>
+	<parameter name="oc" class="java.lang.String"/>
+	<parameter name="guia" class="java.lang.String"/>
+	<parameter name="neto" class="java.lang.String"/>
+	<parameter name="iva" class="java.lang.String"/>
+	<parameter name="total2" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
-			<staticText>
-				<reportElement x="201" y="19" width="143" height="39" uuid="de27e441-8b3e-4595-955f-72d4c257e676"/>
-				<textElement>
-					<font size="18"/>
-				</textElement>
-				<text><![CDATA[HOLA MUNDO]]></text>
-			</staticText>
-		</band>
+		<band height="79" splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="68" splitType="Stretch"/>
+		<band height="86" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="129" splitType="Stretch">
+		<band height="114" splitType="Stretch">
 			<textField>
-				<reportElement x="110" y="67" width="100" height="20" uuid="b64526bd-fff7-475d-9fe3-36d4ad4fef2e"/>
+				<reportElement x="113" y="40" width="100" height="20" uuid="b64526bd-fff7-475d-9fe3-36d4ad4fef2e"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{Direccion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="110" y="15" width="100" height="20" uuid="c4abf68e-94d2-49a3-a47d-e571692d7354"/>
+				<reportElement x="113" y="0" width="100" height="20" uuid="c4abf68e-94d2-49a3-a47d-e571692d7354"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="396" y="15" width="100" height="20" uuid="6fb3d5b7-8a77-4afd-b6cd-a78df38499e6"/>
+				<reportElement x="113" y="20" width="100" height="20" uuid="fd67918d-732c-4f80-9168-71d12136a859"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{senores}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="40" width="83" height="20" uuid="6008310e-6200-4e55-9391-be654767ff95"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{comuna}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="60" width="84" height="20" uuid="4f94b812-a6ef-4d53-a810-acdad32d9789"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="60" width="100" height="20" uuid="acc279a3-73ac-41c2-8ad5-5dcec5edbce7"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{giro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="20" width="79" height="20" uuid="6fb3d5b7-8a77-4afd-b6cd-a78df38499e6"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{rut}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="110" y="41" width="100" height="20" uuid="fd67918d-732c-4f80-9168-71d12136a859"/>
-				<textFieldExpression><![CDATA[$P{senores}]]></textFieldExpression>
+				<reportElement x="298" y="60" width="61" height="20" uuid="0baaac37-59c3-4a20-aebf-ac5a090f08cf"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ciudad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="80" width="100" height="20" uuid="b8845de9-74ba-4ab2-b173-231355a0fc1b"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{condicion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="80" width="100" height="20" uuid="89bc1a33-94ac-4c55-83ce-bc587cd6668f"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{oc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="473" y="80" width="100" height="20" uuid="4a8bb918-24e6-471f-a5d4-d5f36f750a31"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{guia}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="430" splitType="Stretch">
+			<textField>
+				<reportElement x="79" y="43" width="306" height="148" uuid="c6c6739b-d620-431c-b826-1d25ce207ad5"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="43" width="69" height="20" uuid="2293c61e-19d9-461b-8e4d-eb0ca9056bea"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="43" width="76" height="20" uuid="89f86fec-d1c7-42f5-abb1-ded484a7b013"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{punitario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="498" y="43" width="100" height="20" uuid="17704608-4fcb-4182-8e0d-dd1aaee73830"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="305" width="326" height="20" uuid="992c7b0c-53f2-4468-ac48-79eb15c1c6d2"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numeroletras}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="512" y="346" width="100" height="20" uuid="4b74e7ec-444c-4d99-a44b-df65bba633c0"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{neto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="512" y="366" width="100" height="20" uuid="40820e91-42c2-4e5f-a5b2-62d7ca79429c"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{iva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="512" y="386" width="100" height="20" uuid="29cd7013-87c7-435f-b25b-6cb7a767a4f5"/>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{total2}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>

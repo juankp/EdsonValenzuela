@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class conexion extends registro {
+public class conexion {
 
     public Connection conectar() {
         Connection conn = null;
