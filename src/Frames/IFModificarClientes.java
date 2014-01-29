@@ -308,15 +308,15 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("UPDATE PROVEEDOR SET RAZON_PROV = '" + txtRazon.getText() + "',"
-                    + " GIRO_PROV = '" + txtGiro.getText() + "',"
-                    + " DIRECCION_PROV = '" + txtDireccion.getText() + "',"
-                    + " COMUNA_PROV = '" + txtComuna.getText() + "',"
-                    + " CIUDAD_PROV = '" + txtCiudad.getText() + "',"
-                    + " FONO_PROV = '" + txtFono.getText() + "',"
-                    + " EMAIL_PROV = '" + txtEmail.getText() + "',"
+            s.execute("UPDATE CLIENTE SET RAZON = '" + txtRazon.getText() + "',"
+                    + " GIRO = '" + txtGiro.getText() + "',"
+                    + " DIRECCION = '" + txtDireccion.getText() + "',"
+                    + " COMUNA = '" + txtComuna.getText() + "',"
+                    + " CIUDAD = '" + txtCiudad.getText() + "',"
+                    + " FONO = '" + txtFono.getText() + "',"
+                    + " EMAIL = '" + txtEmail.getText() + "',"
                     + " WEB_PROV = '" + txtWeb.getText() + "'"
-                    + " where RUT_PROV = '" + rut + "' ");
+                    + " where RUT = '" + rut + "' ");
             
            
             conn.close();
@@ -371,26 +371,26 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("SELECT * FROM PROVEEDOR where NOMBRE_PROV = '" + nombre + "'");
+            s.execute("SELECT * FROM CLIENTE where NOMBRE = '" + nombre + "'");
             ResultSet rs = s.getResultSet();
 
             while (rs.next()) {
 
-                txtRut.setText(rs.getString("RUT_PROV"));
-                txtRazon.setText(rs.getString("RAZON_PROV"));
-                txtGiro.setText(rs.getString("GIRO_PROV"));
-                txtDireccion.setText(rs.getString("DIRECCION_PROV"));
-                txtComuna.setText(rs.getString("COMUNA_PROV"));
-                txtCiudad.setText(rs.getString("CIUDAD_PROV"));
-                txtFono.setText(rs.getString("FONO_PROV"));
-                txtEmail.setText(rs.getString("EMAIL_PROV"));
-                txtWeb.setText(rs.getString("WEB_PROV"));
+                txtRut.setText(rs.getString("RUT"));
+                txtRazon.setText(rs.getString("RAZON"));
+                txtGiro.setText(rs.getString("GIRO"));
+                txtDireccion.setText(rs.getString("DIRECCION"));
+                txtComuna.setText(rs.getString("COMUNA"));
+                txtCiudad.setText(rs.getString("CIUDAD"));
+                txtFono.setText(rs.getString("FONO"));
+                txtEmail.setText(rs.getString("EMAIL"));
+                txtWeb.setText(rs.getString("WEB"));
 
             }
            
             conn.close();
-            cbxnombre.setModel(modeloCombo);
-            refreshcombo();
+            
+            
 
         } catch (Exception e) {
         }

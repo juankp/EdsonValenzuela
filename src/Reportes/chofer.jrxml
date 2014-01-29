@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db1cb5fc-d50f-4d77-b44f-46ad63bf91e8">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     CHOFER."COD_CHOFER" AS CHOFER_COD_CHOFER,
+     CHOFER."NOMBRE" AS CHOFER_NOMBRE,
+     CHOFER."RUT" AS CHOFER_RUT,
+     CHOFER."FONO" AS CHOFER_FONO,
+     CHOFER."APELLIDO" AS CHOFER_APELLIDO
+FROM
+     "EDSON"."CHOFER" CHOFER]]>
+	</queryString>
+	<field name="CHOFER_COD_CHOFER" class="java.lang.Integer"/>
+	<field name="CHOFER_RUT" class="java.lang.String"/>
+	<field name="CHOFER_NOMBRE" class="java.lang.String"/>
+	<field name="CHOFER_APELLIDO" class="java.lang.String"/>
+	<field name="CHOFER_FONO" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#FF6600" uuid="70ad7dc9-e216-401a-84f5-c7f8efac871a"/>
+				<staticText>
+					<reportElement x="20" y="20" width="284" height="43" forecolor="#FFFFFF" uuid="3eccfc29-c704-449f-8854-27b5fa858886"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Listado Choferes]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="b334e439-796f-426e-b81c-8fcc58472400"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Transportes Edson]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="ba1c26f3-eac4-4195-88f5-44302cc31980"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="-38" y="1" width="111" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="7fdc7d5f-859f-4a51-b751-38a0b77ebc84"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="73" y="0" width="111" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="e156d029-cad9-41da-91af-61107bf39f78"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RUT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="208" y="0" width="111" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="b59c4a06-ed7a-4cd2-abad-d80a79fb7b63"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="319" y="0" width="111" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="48bd8141-6610-48e1-b7bc-e1db2969ac08"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APELLIDO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="430" y="0" width="111" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="a4410726-37ea-4469-b5f4-c068e00614c1"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FONO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="4df0d05a-9639-4df3-821f-94bf873c9b58"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="111" height="20" uuid="c8f81373-1eca-424d-b2b7-4eed20a842f1"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHOFER_COD_CHOFER}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="111" y="0" width="111" height="20" uuid="b87d0d9a-ffce-44e0-ab7e-026d5162ba28"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHOFER_RUT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="222" y="0" width="111" height="20" uuid="767f02a9-cce4-485c-a417-9e7bd04b6cb0"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHOFER_NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="333" y="0" width="111" height="20" uuid="4ca70ec8-1f7a-42d4-92d4-cb2b5befa8de"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHOFER_APELLIDO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="444" y="0" width="111" height="20" uuid="c73a2ce4-c827-45e3-9eda-94cceda245cb"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHOFER_FONO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="a377559c-8271-4783-9dd5-7834cc5535ea"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="f704319f-6583-4f25-8cbf-dc22cb9d0bae"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="91a8ae5b-311f-4bd7-8abb-70e3ed092c72"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

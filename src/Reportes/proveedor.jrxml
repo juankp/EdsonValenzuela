@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1ea0d740-fada-405e-8173-698841c157d5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     PROVEEDOR."RUT_PROV" AS PROVEEDOR_RUT_PROV,
+     PROVEEDOR."NOMBRE_PROV" AS PROVEEDOR_NOMBRE_PROV,
+     PROVEEDOR."DIRECCION_PROV" AS PROVEEDOR_DIRECCION_PROV,
+     PROVEEDOR."COMUNA_PROV" AS PROVEEDOR_COMUNA_PROV,
+     PROVEEDOR."FONO_PROV" AS PROVEEDOR_FONO_PROV,
+     PROVEEDOR."EMAIL_PROV" AS PROVEEDOR_EMAIL_PROV
+FROM
+     "EDSON"."PROVEEDOR" PROVEEDOR]]>
+	</queryString>
+	<field name="PROVEEDOR_RUT_PROV" class="java.lang.String"/>
+	<field name="PROVEEDOR_NOMBRE_PROV" class="java.lang.String"/>
+	<field name="PROVEEDOR_DIRECCION_PROV" class="java.lang.String"/>
+	<field name="PROVEEDOR_COMUNA_PROV" class="java.lang.String"/>
+	<field name="PROVEEDOR_FONO_PROV" class="java.lang.String"/>
+	<field name="PROVEEDOR_EMAIL_PROV" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#FF6600" uuid="44593751-2e30-4683-b1c4-12dd41c64b95"/>
+				<staticText>
+					<reportElement x="20" y="20" width="324" height="43" forecolor="#FFFFFF" uuid="33c42153-2963-43aa-9976-9d6f800789a4"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Listado Proveedor]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="849c0379-4b4c-47ba-b840-4ffbd2cf589b"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Transportes Edson]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="59d616f4-2e40-4e42-a55e-5b383c0ebe02"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="1" width="92" height="20" forecolor="#FF3300" backcolor="#E6E6E6" uuid="7af3275d-1501-47c2-b935-89c91e8e2d47"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RUT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="82" y="1" width="92" height="20" forecolor="#FF3300" backcolor="#E6E6E6" uuid="c8a6cac9-e768-4fae-94cc-acfe74f4eaae"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="174" y="1" width="102" height="20" forecolor="#FF3300" backcolor="#E6E6E6" uuid="1e274698-4eba-456a-9138-8abeae56c485"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="276" y="1" width="92" height="20" forecolor="#FF3300" backcolor="#E6E6E6" uuid="61b8013e-5582-4954-8816-4d85002658c4"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMUNA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="368" y="1" width="69" height="20" forecolor="#FF3300" backcolor="#E6E6E6" uuid="de9da719-7d35-4311-83b6-00f43bb40f54"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="460" y="1" width="92" height="20" forecolor="#FF3300" backcolor="#E6E6E6" uuid="c7cb5458-67ff-4bf2-926c-bbe4548ff681"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMAIL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="7f7565e5-734c-416f-9fb1-2a51c1e233c9"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="92" height="20" uuid="04d4f88a-4ead-40ac-bd8c-b453e0932f34"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROVEEDOR_RUT_PROV}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="92" y="0" width="92" height="20" uuid="8ff997cc-60bd-46f8-824c-6b3f063e4f1f"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROVEEDOR_NOMBRE_PROV}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="184" y="0" width="92" height="20" uuid="aaee0e2b-1792-43b9-af10-942290c7e183"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROVEEDOR_DIRECCION_PROV}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="0" width="92" height="20" uuid="a64adc7b-a6ee-4c96-af02-763a51d6a7c5"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROVEEDOR_COMUNA_PROV}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="368" y="0" width="92" height="20" uuid="a4b721a2-60f5-4e71-94e9-f3738cb9f634"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROVEEDOR_FONO_PROV}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="460" y="0" width="92" height="20" uuid="14cf220c-a2b1-4389-a6c6-84348c0d45da"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROVEEDOR_EMAIL_PROV}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="ba54cf1c-bc90-40ce-86b3-ff44124cdfcb"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="66897f0e-be39-427e-a226-b80c5ac32cc3"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="4419ce52-76e8-4073-8291-5471959094e4"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -4,6 +4,13 @@
  */
 package Frames;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Yo elijo mi pc
@@ -15,6 +22,7 @@ public class IFEliminarProve extends javax.swing.JInternalFrame {
      */
     public IFEliminarProve() {
         initComponents();
+        refreshcombo();
     }
 
     /**
@@ -29,9 +37,19 @@ public class IFEliminarProve extends javax.swing.JInternalFrame {
         cbxnombreprov = new javax.swing.JComboBox();
         btnEliminarProv = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setTitle("ELIMINAR PROVEEDOR ::: TRANPORTES EDSON");
+
         cbxnombreprov.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnEliminarProv.setText("Eliminar");
+        btnEliminarProv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarProvActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,6 +76,56 @@ public class IFEliminarProve extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    public void refreshcombo() {
+            try {
+                DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
+                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+                Connection conn = DriverManager.getConnection(url);
+                conn.setSchema("EDSON");
+                Statement s = conn.createStatement();
+                s.execute("SELECT * FROM PROVEEDOR");
+                ResultSet rs = s.getResultSet();
+
+                while (rs.next()) {
+                    modeloCombo.addElement(rs.getObject("NOMBRE_PROV"));
+                }
+                conn.close();
+                cbxnombreprov.setModel(modeloCombo);
+
+            } catch (Exception e) {
+            }
+
+    }   
+    private void btnEliminarProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProvActionPerformed
+         String nombre = cbxnombreprov.getSelectedItem().toString();
+        try {
+            
+            
+            //DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+            Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
+            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            conn.setSchema("EDSON");
+            Statement s = conn.createStatement();
+            s.execute("DELETE FROM PROVEEDOR  where NOMBRE_PROV = '" + nombre + "' ");
+            
+           
+            conn.close();
+            JOptionPane.showMessageDialog(null, "Se ha eliminado a "+nombre+" de la base de datos");
+        
+           //Limpiar Campos 
+            refreshcombo();
+        
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+       
+    }//GEN-LAST:event_btnEliminarProvActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminarProv;
     private javax.swing.JComboBox cbxnombreprov;

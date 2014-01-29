@@ -361,8 +361,6 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
           
             conn.close();
            
-            
-
         } catch (Exception e) {
         }
         }

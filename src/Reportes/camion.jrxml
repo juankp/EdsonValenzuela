@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0571b20c-94df-406a-999f-cd0c9da3be72">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     CAMION."COD_CAMION" AS CAMION_COD_CAMION,
+     CAMION."PATENTE" AS CAMION_PATENTE,
+     CAMION."MARCA" AS CAMION_MARCA,
+     CAMION."MODELO" AS CAMION_MODELO,
+     CAMION."ANIO" AS CAMION_ANIO
+FROM
+     "EDSON"."CAMION" CAMION]]>
+	</queryString>
+	<field name="CAMION_COD_CAMION" class="java.lang.Integer"/>
+	<field name="CAMION_PATENTE" class="java.lang.String"/>
+	<field name="CAMION_MARCA" class="java.lang.String"/>
+	<field name="CAMION_MODELO" class="java.lang.String"/>
+	<field name="CAMION_ANIO" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#FF6600" uuid="8d85e46b-108a-45ae-9c5f-01fb3c339d61"/>
+				<staticText>
+					<reportElement x="20" y="20" width="311" height="43" forecolor="#FFFFFF" uuid="f7df1abe-5823-43b4-a2ec-e8ed2d27dd66"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Listado Camiones]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="6c63dfaf-54fc-4aa7-aa44-4d2ea535f934"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Transportes Edson]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="c2ff6cf0-2262-4300-98cd-83304d20e308"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="-22" y="0" width="111" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="fa04c90d-ad3b-4dc9-be57-5577b2ce4ad2"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="89" y="0" width="111" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="b2088f08-6eee-4a02-a308-e5b90ab394c4"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PATENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="200" y="0" width="111" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="06b2b793-48b1-46ee-98fb-3810132fb3b2"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MARCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="311" y="0" width="111" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="f2c50c12-9714-49c1-9b32-19bd42338d2d"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MODELO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="422" y="0" width="111" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="0833dc5d-0be0-456f-a992-a4e92c39427c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AÑO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="53e1a404-0407-4c8b-94f6-b0ecbf168a44"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="111" height="20" uuid="3f7cef72-c417-48a2-8b8c-c639a3315ce6"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CAMION_COD_CAMION}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="111" y="0" width="111" height="20" uuid="93e9933e-4dd0-4df0-83de-c6f2c918256f"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CAMION_PATENTE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="222" y="0" width="111" height="20" uuid="1734c3a5-1825-4b9c-8d78-60b851dd0980"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CAMION_MARCA}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="333" y="0" width="111" height="20" uuid="a442898b-b3fb-493b-bab3-0a81e518ada8"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CAMION_MODELO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="444" y="0" width="111" height="20" uuid="d1776571-0ea1-4754-aeb9-f644cbd9e1a5"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CAMION_ANIO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="8bc6b2e8-09f2-4c0c-a695-6e972d4dbfa8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="8dd55f3e-94db-4002-9d96-b5f4316f906a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="2a6a1647-c4a1-410f-911f-a783b52cf80f"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

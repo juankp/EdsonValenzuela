@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21ad8f33-a67f-4626-8dc5-bf422813950d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     RAMPLA."COD_RAMPLA" AS RAMPLA_COD_RAMPLA,
+     RAMPLA."PATENTE" AS RAMPLA_PATENTE,
+     RAMPLA."MARCA" AS RAMPLA_MARCA,
+     RAMPLA."MODELO" AS RAMPLA_MODELO,
+     RAMPLA."ANIO" AS RAMPLA_ANIO,
+     RAMPLA."TIPO" AS RAMPLA_TIPO
+FROM
+     "EDSON"."RAMPLA" RAMPLA]]>
+	</queryString>
+	<field name="RAMPLA_COD_RAMPLA" class="java.lang.Integer"/>
+	<field name="RAMPLA_PATENTE" class="java.lang.String"/>
+	<field name="RAMPLA_MARCA" class="java.lang.String"/>
+	<field name="RAMPLA_MODELO" class="java.lang.String"/>
+	<field name="RAMPLA_ANIO" class="java.lang.String"/>
+	<field name="RAMPLA_TIPO" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#FF6600" uuid="4f6f49e6-9ff3-4c73-b378-db362db110d4"/>
+				<staticText>
+					<reportElement x="20" y="20" width="303" height="43" forecolor="#FFFFFF" uuid="d9c239f8-ea8d-42ce-a684-18d4d24932e9"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Listado Ramplas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="5c4bc422-97c4-4ee1-87cd-810c1b61c219"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Transportes Edson]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="094e0a04-8886-44a4-b624-69c2ab1419ee"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="-10" y="0" width="92" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="0f05f9eb-c9c2-425a-8c81-c5d4ff65a843"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="82" y="0" width="92" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="7d3a49ae-b3f9-400f-9136-239f3b5563f9"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PATENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="174" y="0" width="92" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="e7f43b4a-19f2-4934-a5bd-a8a959b9e63b"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MARCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="266" y="0" width="92" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="49efa356-e92f-4620-9b27-8d7126671cfc"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MODELO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="358" y="0" width="92" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="ba57e91d-c6f1-42a1-be17-cac05734a630"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AÑO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="450" y="0" width="92" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="5113ec2c-51c5-4dda-960b-f5f3f28b2556"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="a4bcc34f-ac26-4686-8e89-1b95f62c3bbf"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="92" height="20" uuid="1d686659-0f65-42e6-b608-ef6e5245c96d"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RAMPLA_COD_RAMPLA}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="92" y="0" width="92" height="20" uuid="455afe12-6b4e-42c5-afd3-1471322d6f1f"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RAMPLA_PATENTE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="184" y="0" width="92" height="20" uuid="9788d822-2239-4125-8c82-201fe0f52adb"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RAMPLA_MARCA}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="0" width="92" height="20" uuid="4b251e85-927f-42c0-8753-bdcb0e1bec2b"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RAMPLA_MODELO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="368" y="0" width="92" height="20" uuid="dafd6a31-9eff-4836-8b0e-cc437af6911e"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RAMPLA_ANIO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="460" y="0" width="92" height="20" uuid="c8966798-695d-4d77-82a6-3f5dd1c9b33f"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RAMPLA_TIPO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="0abe1c82-b7eb-4143-8953-c6aaeca317cb"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="62b6ced1-3be0-40d2-ad35-1da8ff108486"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="7b3e736e-85e5-4716-b155-1ba514f0661d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
