@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13ae1b89-28f3-4cdc-8389-45f629163983">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     FACT_V."NUM_FACTV" AS FACT_V_NUM_FACTV,
+     FACT_V."RUT" AS FACT_V_RUT,
+     FACT_V."COD_CHOFER" AS FACT_V_COD_CHOFER,
+     FACT_V."COD_CAMION" AS FACT_V_COD_CAMION,
+     FACT_V."COD_RAMPLA" AS FACT_V_COD_RAMPLA,
+     FACT_V."DESCRIPCION" AS FACT_V_DESCRIPCION,
+     FACT_V."TOTAL" AS FACT_V_TOTAL,
+     FACT_V."ORDEN_C" AS FACT_V_ORDEN_C,
+     FACT_V."GUIA_D" AS FACT_V_GUIA_D,
+     FACT_V."FECHA" AS FACT_V_FECHA
+FROM
+     "EDSON"."FACT_V" FACT_V]]>
+	</queryString>
+	<field name="FACT_V_NUM_FACTV" class="java.lang.Integer"/>
+	<field name="FACT_V_RUT" class="java.lang.String"/>
+	<field name="FACT_V_COD_CHOFER" class="java.lang.Integer"/>
+	<field name="FACT_V_COD_CAMION" class="java.lang.Integer"/>
+	<field name="FACT_V_COD_RAMPLA" class="java.lang.Integer"/>
+	<field name="FACT_V_DESCRIPCION" class="java.lang.String"/>
+	<field name="FACT_V_FECHA" class="java.sql.Date"/>
+	<field name="FACT_V_ORDEN_C" class="java.lang.String"/>
+	<field name="FACT_V_GUIA_D" class="java.lang.String"/>
+	<field name="FACT_V_TOTAL" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#FF6600" uuid="3de4d798-3253-44bb-ac73-d3a885890a13"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="f9f16c5b-bd28-4d4d-8962-54b492875da0"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Listado Venta]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="481b9afe-55f5-46d4-85ce-99030d9b2e28"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Transportes Edson]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="52236958-d704-499d-8c14-059d578ea1aa"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="55" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="5ed5732b-e815-47eb-8336-5bce3c31fdf7"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NUMERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="55" y="0" width="55" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="000f29b9-abdc-4bb8-a07a-c9a1217145fe"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="110" y="0" width="55" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="feae8b13-0982-44b9-a93d-c474c4ee9ac4"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CHOFER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="165" y="0" width="55" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="de294b7c-0558-4556-b717-a4922e94dbe6"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CAMION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="220" y="0" width="55" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="a781c1b5-c522-45ce-a613-2bbb89739b6a"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RAMPLA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="275" y="0" width="55" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="3e647006-72bf-49a4-bf64-96de6922356b"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="330" y="0" width="55" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="c40682e6-6689-4ecc-bc2e-ee18659541e6"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="385" y="0" width="55" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="eb654748-5707-4101-8f80-ba63dfd8033e"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="440" y="0" width="55" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="f6ea039f-9cff-4930-9285-33596875e154"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GUIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="495" y="0" width="55" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="51aac0e9-8b2f-47da-869e-de8ac503a465"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="35717305-64b9-457e-9862-544676d9864b"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="55" height="20" uuid="dff49028-b263-4e06-b61c-612c84d31da8"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_V_NUM_FACTV}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="55" y="0" width="55" height="20" uuid="a6cfa596-90f9-4615-b163-1b09e61c7b40"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_V_RUT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="110" y="0" width="55" height="20" uuid="e5c82765-472b-43c3-a2a1-1279467c7f5c"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_V_COD_CHOFER}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="165" y="0" width="55" height="20" uuid="557f44b5-fbd5-4143-8314-5cfe7d77f173"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_V_COD_CAMION}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="220" y="0" width="55" height="20" uuid="418d087d-c1e1-4df1-9e4b-dab054bf1e70"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_V_COD_RAMPLA}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="275" y="0" width="55" height="20" uuid="d8212d4a-e384-4339-afe6-b6580de2d634"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_V_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="330" y="0" width="55" height="20" uuid="ecec234a-672d-49ed-a82f-74d30b622acf"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_V_FECHA}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="385" y="0" width="55" height="20" uuid="311dd3a4-9533-4dc2-98ef-a769fc3407d7"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_V_ORDEN_C}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="440" y="0" width="55" height="20" uuid="c2dab063-df8c-4ae8-9566-ce7c6a429f9a"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_V_GUIA_D}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="495" y="0" width="55" height="20" uuid="531f1401-49b9-4422-8957-4cc110c84293"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_V_TOTAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="5125919e-5902-4d21-ad7c-5c50a0f211a3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="42ab5ee8-11ae-4bfa-b1a9-77d218509bd8"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="572e86d9-9dae-4e35-a6ec-326c2e7ec4de"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

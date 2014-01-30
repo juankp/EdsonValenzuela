@@ -103,10 +103,20 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
                 txtRazonProvActionPerformed(evt);
             }
         });
+        txtRazonProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRazonProvKeyTyped(evt);
+            }
+        });
 
         txtGiroProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtGiroProvActionPerformed(evt);
+            }
+        });
+        txtGiroProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtGiroProvKeyTyped(evt);
             }
         });
 
@@ -115,16 +125,31 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
                 txtComunaProvActionPerformed(evt);
             }
         });
+        txtComunaProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtComunaProvKeyTyped(evt);
+            }
+        });
 
         txtFonoProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFonoProvActionPerformed(evt);
             }
         });
+        txtFonoProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFonoProvKeyTyped(evt);
+            }
+        });
 
         txtCiudadProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCiudadProvActionPerformed(evt);
+            }
+        });
+        txtCiudadProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCiudadProvKeyTyped(evt);
             }
         });
 
@@ -386,6 +411,31 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
             }
 
     }//GEN-LAST:event_cbxProvActionPerformed
+
+    private void txtRazonProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonProvKeyTyped
+        char car = evt.getKeyChar();
+if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtRazonProvKeyTyped
+
+    private void txtGiroProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGiroProvKeyTyped
+        char car = evt.getKeyChar();
+if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtGiroProvKeyTyped
+
+    private void txtComunaProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComunaProvKeyTyped
+        char car = evt.getKeyChar();
+if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtComunaProvKeyTyped
+
+    private void txtCiudadProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadProvKeyTyped
+        char car = evt.getKeyChar();
+if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtCiudadProvKeyTyped
+
+    private void txtFonoProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFonoProvKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'0' || car>'9')) evt.consume();
+    }//GEN-LAST:event_txtFonoProvKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModificarProv;

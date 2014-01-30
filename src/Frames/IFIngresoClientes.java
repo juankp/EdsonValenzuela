@@ -6,6 +6,7 @@ package Frames;
 
 import Codigo.cliente;
 import Codigo.conexion;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,11 +35,13 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Yo elijo mi pc
  */
 public class IFIngresoClientes extends javax.swing.JInternalFrame {
+
     Connection cn;
     PreparedStatement ps;
     ResultSet rs;
     ResultSetMetaData rsm;
     DefaultTableModel dtm;
+
     /**
      * Creates new form NewJInternalFrame
      */
@@ -47,7 +50,7 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
         refreshtabla();
         conexion con = new conexion();
         con.conectar();
-        
+
     }
 
     /**
@@ -95,10 +98,28 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Comuna");
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
+        txtRazon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRazonKeyTyped(evt);
+            }
+        });
+
         btnIngresar.setText("Guardar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
+            }
+        });
+
+        txtComuna.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtComunaKeyTyped(evt);
             }
         });
 
@@ -107,6 +128,12 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
         jLabel6.setText("Ciudad");
 
         jLabel2.setText("RUT");
+
+        txtCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCiudadKeyTyped(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,6 +145,12 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        txtFono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFonoKeyTyped(evt);
+            }
+        });
+
         jLabel9.setText("WEB");
 
         jLabel10.setText("Giro");
@@ -125,6 +158,12 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
         jLabel8.setText("Email");
 
         jLabel3.setText("Razón");
+
+        txtGiro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtGiroKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Dirección");
 
@@ -254,14 +293,37 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public static boolean validarRut(String rut) {
+
+        boolean validacion = false;
+        try {
+            rut = rut.toUpperCase();
+            rut = rut.replace(".", "");
+            rut = rut.replace("-", "");
+            int rutAux = Integer.parseInt(rut.substring(0, rut.length() - 1));
+
+            char dv = rut.charAt(rut.length() - 1);
+
+            int m = 0, s = 1;
+            for (; rutAux != 0; rutAux /= 10) {
+                s = (s + rutAux % 10 * (9 - m++ % 6)) % 11;
+            }
+            if (dv == (char) (s != 0 ? s + 47 : 75)) {
+                validacion = true;
+            }
+
+        } catch (java.lang.NumberFormatException e) {
+        } catch (Exception e) {
+        }
+        return validacion;
+    }
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        
+        try {
 
-        try
-        {
-           
             cliente nuevo = new cliente();
-            String name,rut,ciudad,comuna,direccion,email,fono,giro,web,razon;
+            String name, rut, ciudad, comuna, direccion, email, fono, giro, web, razon;
 
             nuevo.nombre = "";
             nuevo.rut = "";
@@ -278,7 +340,6 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
             nuevo.web = txtWeb.getText().toUpperCase();
             nuevo.razon = txtRazon.getText().toUpperCase();
 
-
             name = nuevo.nombre;
             rut = nuevo.rut;
             ciudad = nuevo.ciudad;
@@ -289,14 +350,14 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
             giro = nuevo.giro;
             web = nuevo.web;
             razon = nuevo.razon;
-            
+
             Class.forName("org.apache.derby.jdbc.ClientDriver");//prueba es base de datos
 
             String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
             conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("INSERT INTO CLIENTE (NOMBRE,RUT,RAZON,DIRECCION,COMUNA,CIUDAD,FONO,EMAIL,WEB,GIRO) VALUES ('"+name+"','"+rut+"','"+razon+"','"+direccion+"','"+comuna+"','"+ciudad+"','"+fono+"','"+email+"','"+web+"','"+giro+"')");
+            s.execute("INSERT INTO CLIENTE (NOMBRE,RUT,RAZON,DIRECCION,COMUNA,CIUDAD,FONO,EMAIL,WEB,GIRO) VALUES ('" + name + "','" + rut + "','" + razon + "','" + direccion + "','" + comuna + "','" + ciudad + "','" + fono + "','" + email + "','" + web + "','" + giro + "')");
             ResultSet rs = s.getResultSet();
 
             refreshtabla();
@@ -316,82 +377,116 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
             txtWeb.setText(" ");
 
             conn.close();
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
             ex.printStackTrace();
 
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(IFIngresoClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     //Limpiar tabla
-	public void limpiarTabla(JTable tabla){
+    public void limpiarTabla(JTable tabla) {
         try {
-	            DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
-	            int filas=tabla.getRowCount();
-	            for (int i = 0;filas>i; i++) {
-	                modelo.removeRow(0);
-	            }
-	        } catch (Exception e) {
-	            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
-	        }
-	    }
-        
-        //refrescar tabla 
-        public void refreshtabla(){
+            DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+            int filas = tabla.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modelo.removeRow(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+        }
+    }
+
+    //refrescar tabla 
+    public void refreshtabla() {
         limpiarTabla(jTable1);
         try {
-            
+
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
             conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("SELECT NOMBRE,RUT,RAZON,DIRECCION,COMUNA,CIUDAD,FONO,EMAIL,WEB,GIRO FROM CLIENTE");
-            
+
             ResultSet rs = s.getResultSet();
             rsm = rs.getMetaData();
             ArrayList<Object[]> data = new ArrayList<>();
             data.clear();
-            while(rs.next()){
+            while (rs.next()) {
                 Object[] rows = new Object[rsm.getColumnCount()];
-                for(int i=0;i< rows.length;i++){
-                    rows[i]=rs.getObject(i+1);
-                    
+                for (int i = 0; i < rows.length; i++) {
+                    rows[i] = rs.getObject(i + 1);
+
                 }
-                
+
                 data.add(rows);
-                
+
             }
-            dtm = (DefaultTableModel)this.jTable1.getModel();
+            dtm = (DefaultTableModel) this.jTable1.getModel();
             for (int i = 0; i < data.size(); i++) {
                 dtm.addRow(data.get(i));
-                
+
             }
         } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-        
+
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
             conn.setSchema("EDSON");
-            
-            String ubicacion = System.getProperty("user.dir")+"/src/Reportes/cliente.jasper";
+
+            String ubicacion = System.getProperty("user.dir") + "/src/Reportes/cliente.jasper";
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(ubicacion);
-            JasperPrint print = JasperFillManager.fillReport(jasperReport, null,conn);
-            JasperViewer view = new JasperViewer(print,false);
+            JasperPrint print = JasperFillManager.fillReport(jasperReport, null, conn);
+            JasperViewer view = new JasperViewer(print, false);
             view.setVisible(true);
-            
-           
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_btnGenerarActionPerformed
+
+    private void txtFonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFonoKeyTyped
+        if(!Character.isDigit(evt.getKeyChar()) && !Character.isISOControl(evt.getKeyChar()))
+    {
+        Toolkit.getDefaultToolkit().beep();
+        evt.consume();
+    }
+    }//GEN-LAST:event_txtFonoKeyTyped
+
+    private void txtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadKeyTyped
+       char car = evt.getKeyChar();
+        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtCiudadKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtRazonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtRazonKeyTyped
+
+    private void txtGiroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGiroKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtGiroKeyTyped
+
+    private void txtComunaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComunaKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtComunaKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerar;

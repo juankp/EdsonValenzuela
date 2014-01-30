@@ -110,10 +110,20 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
                 txtRazonActionPerformed(evt);
             }
         });
+        txtRazon.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRazonKeyTyped(evt);
+            }
+        });
 
         txtGiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtGiroActionPerformed(evt);
+            }
+        });
+        txtGiro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtGiroKeyTyped(evt);
             }
         });
 
@@ -122,10 +132,20 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
                 txtFonoActionPerformed(evt);
             }
         });
+        txtFono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFonoKeyTyped(evt);
+            }
+        });
 
         txtCiudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCiudadActionPerformed(evt);
+            }
+        });
+        txtCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCiudadKeyTyped(evt);
             }
         });
 
@@ -138,6 +158,11 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
         txtComuna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtComunaActionPerformed(evt);
+            }
+        });
+        txtComuna.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtComunaKeyTyped(evt);
             }
         });
 
@@ -396,6 +421,31 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
         }
         
     }//GEN-LAST:event_cbxnombreActionPerformed
+
+    private void txtRazonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRazonKeyTyped
+
+    private void txtGiroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGiroKeyTyped
+       char car = evt.getKeyChar();
+if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtGiroKeyTyped
+
+    private void txtComunaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComunaKeyTyped
+       char car = evt.getKeyChar();
+if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtComunaKeyTyped
+
+    private void txtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadKeyTyped
+      char car = evt.getKeyChar();
+if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtCiudadKeyTyped
+
+    private void txtFonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFonoKeyTyped
+       char car = evt.getKeyChar();
+if((car<'0' || car>'9')) evt.consume();
+    }//GEN-LAST:event_txtFonoKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModificar;

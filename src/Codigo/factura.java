@@ -12,7 +12,7 @@ package Codigo;
  */
 public class factura {
     
-    public String rut;
+    
 
     public int getCod_cliente() {
         return cod_cliente;
@@ -21,10 +21,12 @@ public class factura {
     public void setCod_cliente(int cod_cliente) {
         this.cod_cliente = cod_cliente;
     }
+    public String rut;
     public int cod_cliente;
     public int cod_chofer;
     public int cod_camion;
     public int cod_rampla;
+    
     public String descripcion;
     public String cantidad;
     public String precio_u;

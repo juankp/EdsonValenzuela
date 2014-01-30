@@ -5,6 +5,7 @@
 package Frames;
 
 import Codigo.cliente;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -95,6 +96,42 @@ public class IFIngresoProve extends javax.swing.JInternalFrame {
         jLabel9.setText("Ciudad");
 
         jLabel10.setText("Fono");
+
+        txtNombreProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreProvKeyTyped(evt);
+            }
+        });
+
+        txtComunaProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtComunaProvKeyTyped(evt);
+            }
+        });
+
+        txtRazonProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRazonProvKeyTyped(evt);
+            }
+        });
+
+        txtGiroProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtGiroProvKeyTyped(evt);
+            }
+        });
+
+        txtCiudadProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCiudadProvKeyTyped(evt);
+            }
+        });
+
+        txtFonoProv.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFonoProvKeyTyped(evt);
+            }
+        });
 
         jTableProve.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -311,6 +348,39 @@ public class IFIngresoProve extends javax.swing.JInternalFrame {
         } 
     
     }//GEN-LAST:event_btnGuardarProvActionPerformed
+
+    private void txtNombreProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProvKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtNombreProvKeyTyped
+
+    private void txtRazonProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonProvKeyTyped
+      char car = evt.getKeyChar();
+        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtRazonProvKeyTyped
+
+    private void txtGiroProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGiroProvKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtGiroProvKeyTyped
+
+    private void txtComunaProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComunaProvKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
+    }//GEN-LAST:event_txtComunaProvKeyTyped
+
+    private void txtCiudadProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadProvKeyTyped
+        char car = evt.getKeyChar();
+        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCiudadProvKeyTyped
+
+    private void txtFonoProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFonoProvKeyTyped
+        if(!Character.isDigit(evt.getKeyChar()) && !Character.isISOControl(evt.getKeyChar()))
+{
+     Toolkit.getDefaultToolkit().beep();
+     evt.consume();
+ }
+    }//GEN-LAST:event_txtFonoProvKeyTyped
     //Limpiar tabla
 	public void limpiarTabla(JTable tabla){
         try {

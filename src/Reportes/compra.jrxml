@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0c4c9ea-07f1-4489-b51c-10b7e5c55a29">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     FACT_C."NUM_FACTC" AS FACT_C_NUM_FACTC,
+     FACT_C."RUT_PROV" AS FACT_C_RUT_PROV,
+     FACT_C."FECHA" AS FACT_C_FECHA,
+     FACT_C."NETO" AS FACT_C_NETO,
+     FACT_C."IVA" AS FACT_C_IVA,
+     FACT_C."TOTAL" AS FACT_C_TOTAL,
+     FACT_C."DESCRIPCION" AS FACT_C_DESCRIPCION,
+     FACT_C."ESPECIFICO" AS FACT_C_ESPECIFICO,
+     FACT_C."EXCENTO" AS FACT_C_EXCENTO,
+     FACT_C."ORDEN_C" AS FACT_C_ORDEN_C,
+     FACT_C."GUIA_D" AS FACT_C_GUIA_D,
+     FACT_C."COND_VENTA" AS FACT_C_COND_VENTA
+FROM
+     "EDSON"."FACT_C" FACT_C]]>
+	</queryString>
+	<field name="FACT_C_NUM_FACTC" class="java.lang.String"/>
+	<field name="FACT_C_RUT_PROV" class="java.lang.String"/>
+	<field name="FACT_C_FECHA" class="java.sql.Timestamp"/>
+	<field name="FACT_C_DESCRIPCION" class="java.lang.String"/>
+	<field name="FACT_C_ORDEN_C" class="java.lang.String"/>
+	<field name="FACT_C_GUIA_D" class="java.lang.String"/>
+	<field name="FACT_C_TOTAL" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#FF6600" uuid="8467a573-46bb-4310-8dcb-6fa26cbdc7c3"/>
+				<staticText>
+					<reportElement x="20" y="20" width="283" height="43" forecolor="#FFFFFF" uuid="5972640d-dad6-4f8e-9a3b-b2ccdd7b5682"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Listado Compra]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="751fe596-2185-41d8-8ee1-0922b06a66ee"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Transportes Edson]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="e34ca2a7-3731-46bf-a37f-c1cd742c62fa"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="1" width="79" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="3a823015-213e-44f2-9127-cbf39e3ca820"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NUMERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="59" y="0" width="79" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="7c0a762d-6566-4315-a134-8c65b0e0ee4c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROVEEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="138" y="0" width="68" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="a730869b-1838-404b-8b86-ff67b0891038"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="206" y="0" width="103" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="dc396248-1fed-4422-bed8-dcbcb7583d30"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="309" y="0" width="66" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="81cad41e-df9a-4f6b-be03-826adf555e00"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="375" y="0" width="79" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="434208fa-e536-4b8b-9385-046bab5c6c7e"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GUIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="454" y="1" width="79" height="20" forecolor="#FF6600" backcolor="#E6E6E6" uuid="25e21c80-9a2d-4335-ae6c-a60dcab9ec8f"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="c6583173-5f83-4dd9-bc34-78bf4cd3d83a"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="79" height="20" uuid="2f79ed83-6c42-42bf-a940-8edc51d561bb"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_C_NUM_FACTC}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="69" y="0" width="79" height="20" uuid="7342e033-2593-42ea-98ac-bbfde57ca166"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_C_RUT_PROV}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="316" y="0" width="79" height="20" uuid="371e08b9-9826-4ca2-938b-10584f55cd1a"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_C_ORDEN_C}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="395" y="0" width="79" height="20" uuid="89e77263-6838-412a-9ef7-15d9eced021f"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_C_GUIA_D}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="474" y="0" width="79" height="20" uuid="5c129367-b38f-40e1-8858-b0adefde58c0"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_C_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="148" y="0" width="79" height="20" uuid="68482a02-d514-4a68-8c9a-9cb46d279c34"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_C_FECHA}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="230" y="0" width="79" height="20" uuid="376af7e1-b58b-4a42-b992-8e629320f93b"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FACT_C_DESCRIPCION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="dd52a4ae-a5bf-4903-aedd-1eba1201a9bc"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="d755475e-1578-4d86-9324-e03fa59e4b3e"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="77d1bbd1-e374-4e32-b9a3-1edbddd3bae1"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

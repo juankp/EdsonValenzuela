@@ -112,12 +112,8 @@ public class IFFactura extends javax.swing.JInternalFrame {
                 while (rs.next()) {
                     modeloCombo.addElement(rs.getObject("RUT"));
                 }
-                Statement s2 = conn.createStatement();
-                s2.execute("SELECT * FROM CHOFER WHERE NOMBRE = '" + cbxChofer.getSelectedItem() + "'");
-                ResultSet rs2 = s2.getResultSet();
-                while(rs2.next()){
-                    codigo2 = rs2.getInt("COD_CHOFER");
-                }
+               
+                
                 conn.close();
                 cbxChofer.setModel(modeloCombo);
 
@@ -140,12 +136,7 @@ public class IFFactura extends javax.swing.JInternalFrame {
                 while (rs.next()) {
                     modeloCombo.addElement(rs.getObject("PATENTE"));
                 }
-                Statement s2 = conn.createStatement();
-                s2.execute("SELECT COD_CAMION FROM CAMION WHERE PATENTE = '" + cbxcamion.getSelectedItem().toString() + "'");
-                ResultSet rs2 = s2.getResultSet();
-                while(rs2.next()){
-                    codigo3 = rs2.getInt("COD_CAMION");
-                }
+                
                 conn.close();
                 cbxcamion.setModel(modeloCombo);
 
@@ -170,12 +161,7 @@ public class IFFactura extends javax.swing.JInternalFrame {
                     modeloCombo.addElement(rs.getObject("PATENTE"));
                 }
                 
-                Statement s2 = conn.createStatement();
-                s2.execute("SELECT COD_RAMPLA FROM RAMPLA WHERE PATENTE = '" + (String)cbxrampla.getSelectedItem() + "'");
-                ResultSet rs2 = s2.getResultSet();
-                while(rs2.next()){
-                    codigo4 = rs2.getInt("COD_RAMPLA");
-                }
+                
                 conn.close();
                 cbxrampla.setModel(modeloCombo);
 
@@ -183,7 +169,58 @@ public class IFFactura extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "error: " + e);
             }
     }
+    public int obtenerCodigoChofer()
+    {
+        String chofer;
+        chofer = cbxChofer.getSelectedItem().toString();
+        try {
+                
+                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
+                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+                Connection conn = DriverManager.getConnection(url);
+                conn.setSchema("EDSON");
+                Statement s = conn.createStatement();
+                s.execute("SELECT * FROM CHOFER WHERE RUT = '" + cbxChofer.getSelectedItem().toString() + "'");
+                ResultSet rs = s.getResultSet();
+                
+                while (rs.next()) {
+                    codigo2 = rs.getInt("COD_CHOFER");
+                }
+                
+                conn.close();
+                
+            } catch (ClassNotFoundException | SQLException e) {
+                JOptionPane.showMessageDialog(null, "error: " + e);
+            }
+        return codigo2;
+    }
     
+    public int obtenerCodigoCamion()
+    {
+        String chofer;
+        chofer = cbxcamion.getSelectedItem().toString();
+        try {
+                
+                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
+                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+                Connection conn = DriverManager.getConnection(url);
+                conn.setSchema("EDSON");
+                Statement s = conn.createStatement();
+                s.execute("SELECT * FROM CAMION WHERE PATENTE = '"+ chofer +"'");
+                ResultSet rs = s.getResultSet();
+                
+                while (rs.next()) {
+                    codigo3 = rs.getInt("COD_CAMION");
+                }
+                
+                conn.close();
+                
+            } catch (ClassNotFoundException | SQLException e) {
+                JOptionPane.showMessageDialog(null, "error: " + e);
+            }
+        return codigo3;
+        
+    }
     public int obtenerCodigoRampla()
     {
         String chofer;
@@ -203,11 +240,11 @@ public class IFFactura extends javax.swing.JInternalFrame {
                 }
                 
                 conn.close();
-                return codigo4;
+                
             } catch (ClassNotFoundException | SQLException e) {
                 JOptionPane.showMessageDialog(null, "error: " + e);
             }
-        return 0;
+        return codigo4;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -262,6 +299,7 @@ public class IFFactura extends javax.swing.JInternalFrame {
         btnAgregarFila = new javax.swing.JButton();
         btnQuitarFila = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -542,10 +580,17 @@ public class IFFactura extends javax.swing.JInternalFrame {
             }
         });
 
-        btnIngresar.setText("INGRESAR");
+        btnIngresar.setText("INGRESAR VENTA");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIngresarActionPerformed(evt);
+            }
+        });
+
+        btnLimpiar.setText("LIMPIAR");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
             }
         });
 
@@ -556,9 +601,9 @@ public class IFFactura extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 826, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 536, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24))
             .addGroup(layout.createSequentialGroup()
@@ -571,10 +616,12 @@ public class IFFactura extends javax.swing.JInternalFrame {
                             .addComponent(btnAgregarFila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnQuitarFila, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
+                        .addGap(260, 260, 260)
                         .addComponent(btnIngresar)
                         .addGap(33, 33, 33)
-                        .addComponent(btnGenerar)))
+                        .addComponent(btnGenerar)
+                        .addGap(31, 31, 31)
+                        .addComponent(btnLimpiar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -596,8 +643,9 @@ public class IFFactura extends javax.swing.JInternalFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGenerar)
-                    .addComponent(btnIngresar))
-                .addContainerGap(217, Short.MAX_VALUE))
+                    .addComponent(btnIngresar)
+                    .addComponent(btnLimpiar))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         pack();
@@ -653,10 +701,10 @@ public class IFFactura extends javax.swing.JInternalFrame {
             factura f = new factura();
             
             f.rut= txtrut.getText();
-            f.cod_cliente = codigo;
+            
             f.cod_chofer = codigo2;
             f.cod_camion = codigo3;
-            f.cod_rampla = obtenerCodigoRampla();
+            f.cod_rampla = codigo4;
             f.descripcion = tablaFactura.getValueAt(0, 2).toString();
             f.cantidad = tablaFactura.getValueAt(0, 1).toString();
             f.precio_u = tablaFactura.getValueAt(0, 3).toString();
@@ -794,16 +842,20 @@ public class IFFactura extends javax.swing.JInternalFrame {
         
         try {
             factura f = new factura();
-            
+
             f.rut= txtrut.getText();
-            f.cod_chofer = codigo2;
-            f.cod_camion = codigo3;
-            f.cod_rampla = codigo4;
+           
+//            f.cod_chofer = codigo2;
+//            f.cod_camion = codigo3;
+//            f.cod_rampla = codigo4;
+            f.cod_chofer = obtenerCodigoChofer();
+            f.cod_camion = obtenerCodigoCamion();
+            f.cod_rampla = obtenerCodigoRampla();
             f.descripcion = tablaFactura.getValueAt(0, 2).toString();
             f.cantidad = tablaFactura.getValueAt(0, 1).toString();
             f.precio_u = tablaFactura.getValueAt(0, 3).toString();
-            //f.total = Double.toString(total2);
-            //f.iva = Double.toString(iva);
+            f.total = Double.toString(total2);
+            f.iva = Double.toString(iva);
             f.especifico = txtEspecifico.getText(); //falta agregar los campos a la interfaz
             f.excento = txtExcento.getText();    // lo mismo 
             f.cond_venta = txtcond.getText();
@@ -815,20 +867,39 @@ public class IFFactura extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("INSERT INTO FACT_V (RUT,COD_CHOFER,COD_CAMION,COD_RAMPLA,DESCRIPCION,CANTIDAD,PRECIO_U,TOTAL,IVA,ESPECIFICO,EXCENTO,COND_VENTA,ORDEN_C,GUIA_D) VALUES ('"+f.rut+"','"+f.cod_chofer+"','"+f.cod_camion+"','"+f.cod_rampla+"','"+f.descripcion+"','"+f.cantidad+"','"+f.precio_u+"','"+f.total+"','"+f.iva+"','"+f.especifico+"','"+f.excento+"','"+f.cond_venta+"','"+f.orden_c+"','"+f.guia_d+"')");
+            s.execute("INSERT INTO FACT_V (RUT,COD_CHOFER,COD_CAMION,COD_RAMPLA,DESCRIPCION,CANTIDAD,PRECIO_U,TOTAL,IVA,ESPECIFICO,EXCENTO,COND_VENTA,ORDEN_C,GUIA_D) VALUES ('"+f.rut+"',"+f.cod_chofer+","+f.cod_camion+","+f.cod_rampla+",'"+f.descripcion+"','"+f.cantidad+"','"+f.precio_u+"','"+f.total+"','"+f.iva+"','"+f.especifico+"','"+f.excento+"','"+f.cond_venta+"','"+f.orden_c+"','"+f.guia_d+"')");
 //            ResultSet rs = s.getResultSet();
             
             JOptionPane.showMessageDialog(null, "Se ha Ingresado correctamente la factura");
         } catch (ClassNotFoundException | SQLException | HeadlessException e) {
-   
+            JOptionPane.showMessageDialog(null, codigo);
+            JOptionPane.showMessageDialog(null, codigo2);
+            JOptionPane.showMessageDialog(null, codigo3);
+            JOptionPane.showMessageDialog(null, codigo4);
             JOptionPane.showMessageDialog(null, e);
         }        // TODO add your handling code here:
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+       txtEspecifico.setText(" ");
+       txtExcento.setText(" ");
+       txtciudad.setText(" ");
+       txtcomuna.setText(" ");
+       txtcond.setText(" ");
+       txtdireccion.setText(" ");
+       txtgiro.setText(" ");
+       txtguia.setText(" ");
+       
+       txtoc.setText(" ");
+       txtrut.setText(" ");
+       txttelefono.setText(" ");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarFila;
     private javax.swing.JButton btnGenerar;
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnQuitarFila;
     private javax.swing.JComboBox cbxChofer;
     private javax.swing.JComboBox cbxcamion;

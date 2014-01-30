@@ -227,20 +227,38 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombreProv">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNombreProvKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtComunaProv">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtComunaProvKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDireccionProv">
     </Component>
     <Component class="javax.swing.JTextField" name="txtRutProv">
     </Component>
     <Component class="javax.swing.JTextField" name="txtRazonProv">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtRazonProvKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtGiroProv">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtGiroProvKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCiudadProv">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCiudadProvKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtFonoProv">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFonoProvKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmailProv">
     </Component>

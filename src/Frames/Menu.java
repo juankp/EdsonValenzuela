@@ -7,22 +7,31 @@ package Frames;
 import Clases.ImagenFondo;
 import java.sql.SQLException;
 import Codigo.conexion;
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.net.InetAddress;
 import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.derby.drda.NetworkServerControl;
+
 
 /**
  *
  * @author Yo elijo mi pc
  */
 public class Menu extends javax.swing.JFrame {
-
-    public Menu() {
+    
+    
+    public Menu() throws Exception {
         initComponents();
         jDesktopPane1.setBorder(new ImagenFondo());
         this.setExtendedState(Menu.MAXIMIZED_BOTH);
         conexion con = new conexion();
         con.conectar();
+        NetworkServerControl server = new NetworkServerControl
+        (InetAddress.getByName("localhost"),1527);
+        server.start(null);
+        
         
     }
 
@@ -49,6 +58,9 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem18 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -158,13 +170,37 @@ public class Menu extends javax.swing.JFrame {
         jMenu3.setText("Factura");
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem4.setText("Nueva");
+        jMenuItem4.setText("Venta");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
             }
         });
         jMenu3.add(jMenuItem4);
+
+        jMenuItem23.setText("Ver Ventas");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem23);
+
+        jMenuItem22.setText("Compra");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem22);
+
+        jMenuItem24.setText("Ver Compras");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem24);
 
         jMenuBar1.add(jMenu3);
 
@@ -436,6 +472,24 @@ public class Menu extends javax.swing.JFrame {
         mod.show();
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        IFCompra mod = new IFCompra();
+        jDesktopPane1.add(mod);
+        mod.show();
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+       IFVerCompra mod = new IFVerCompra();
+       jDesktopPane1.add(mod);
+       mod.show();
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+       IFVerVentas mod = new IFVerVentas();
+       jDesktopPane1.add(mod);
+       mod.show();
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -469,9 +523,15 @@ public class Menu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //new Menu().setVisible(true);
-                Menu men = new Menu();
-                men.setExtendedState(MAXIMIZED_BOTH);
-                men.setVisible(true);
+                Menu men;
+                try {
+                    men = new Menu();
+                    men.setExtendedState(MAXIMIZED_BOTH);
+                    men.setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
         });
     }
@@ -498,6 +558,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
