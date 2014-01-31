@@ -310,11 +310,11 @@ public class IFIngresoProve extends javax.swing.JInternalFrame {
             web = nuevo.web;
             razon = nuevo.razon;
 
-            Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver"); //prueba es base de datos
 
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("INSERT INTO PROVEEDOR (NOMBRE_PROV,RUT_PROV,RAZON_PROV,DIRECCION_PROV,COMUNA_PROV,CIUDAD_PROV,FONO_PROV,EMAIL_PROV,WEB_PROV,GIRO_PROV) VALUES ('"+name+"','"+rut+"','"+razon+"','"+direccion+"','"+comuna+"','"+ciudad+"','"+fono+"','"+email+"','"+web+"','"+giro+"')");
             ResultSet rs = s.getResultSet();
@@ -399,12 +399,12 @@ public class IFIngresoProve extends javax.swing.JInternalFrame {
         limpiarTabla(jTableProve);
         try {
             
-            Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver"); //prueba es base de datos
 
         
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("SELECT NOMBRE_PROV,RUT_PROV,RAZON_PROV,DIRECCION_PROV,COMUNA_PROV,CIUDAD_PROV,FONO_PROV,EMAIL_PROV,WEB_PROV,GIRO_PROV FROM PROVEEDOR");
             

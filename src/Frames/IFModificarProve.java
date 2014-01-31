@@ -319,10 +319,10 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
             
             
             //DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-            Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("UPDATE PROVEEDOR SET RAZON_PROV = '" + txtRazonProv.getText() + "',"
                     + " GIRO_PROV = '" + txtGiroProv.getText() + "',"
@@ -362,10 +362,10 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
 
         try {
             DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-            Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("SELECT * FROM PROVEEDOR where NOMBRE_PROV = '" + nombre + "'");
             ResultSet rs = s.getResultSet();
@@ -393,10 +393,10 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
         public void refreshcombo() {
             try {
                 DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
-                Connection conn = DriverManager.getConnection(url);
-                conn.setSchema("EDSON");
+                Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
                 s.execute("SELECT * FROM PROVEEDOR");
                 ResultSet rs = s.getResultSet();

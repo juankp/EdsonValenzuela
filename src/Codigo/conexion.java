@@ -13,10 +13,11 @@ public class conexion {
         String url;
         Statement s;
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
 
-            url = "jdbc:derby:Edson;create=true;user=edson;password=edson";
+            url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             conn = DriverManager.getConnection(url);
+            
             if (conn != null) {
                 System.out.println("Se ha conectado correctamente :) ");
                 s = conn.createStatement();
@@ -27,4 +28,9 @@ public class conexion {
         }
         return null;
     }
-}
+        public static void main(String[] args) throws Exception{
+            conexion test = new conexion();
+            test.conectar();
+        }
+    }
+

@@ -36,6 +36,7 @@ public class IFEliminarProve extends javax.swing.JInternalFrame {
 
         cbxnombreprov = new javax.swing.JComboBox();
         btnEliminarProv = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -56,11 +57,13 @@ public class IFEliminarProve extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
+                .addGap(59, 59, 59)
+                .addComponent(jLabel1)
+                .addGap(78, 78, 78)
                 .addComponent(cbxnombreprov, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(168, Short.MAX_VALUE)
                 .addComponent(btnEliminarProv, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(127, 127, 127))
         );
@@ -68,10 +71,12 @@ public class IFEliminarProve extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addComponent(cbxnombreprov, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxnombreprov, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(37, 37, 37)
                 .addComponent(btnEliminarProv, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         pack();
@@ -81,10 +86,10 @@ public class IFEliminarProve extends javax.swing.JInternalFrame {
     public void refreshcombo() {
             try {
                 DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
-                Connection conn = DriverManager.getConnection(url);
-                conn.setSchema("EDSON");
+                Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
                 s.execute("SELECT * FROM PROVEEDOR");
                 ResultSet rs = s.getResultSet();
@@ -105,10 +110,10 @@ public class IFEliminarProve extends javax.swing.JInternalFrame {
             
             
             //DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-            Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("DELETE FROM PROVEEDOR  where NOMBRE_PROV = '" + nombre + "' ");
             
@@ -129,5 +134,6 @@ public class IFEliminarProve extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminarProv;
     private javax.swing.JComboBox cbxnombreprov;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -54,7 +54,6 @@ public class IFCompra extends javax.swing.JInternalFrame {
         txtEspecifico = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtGuia = new javax.swing.JTextField();
-        txtDescripcion = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -63,6 +62,8 @@ public class IFCompra extends javax.swing.JInternalFrame {
         txtIva = new javax.swing.JTextField();
         txtTotal = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtDescripcion = new javax.swing.JTextArea();
 
         setClosable(true);
         setIconifiable(true);
@@ -111,6 +112,10 @@ public class IFCompra extends javax.swing.JInternalFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
+
+        txtDescripcion.setColumns(20);
+        txtDescripcion.setRows(5);
+        jScrollPane1.setViewportView(txtDescripcion);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,14 +166,14 @@ public class IFCompra extends javax.swing.JInternalFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(18, 18, 18)
-                                                .addComponent(txtEspecifico, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(jLabel6))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
                                                 .addComponent(txtCond, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel7)))
+                                                .addComponent(jLabel7))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtEspecifico, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jLabel6)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtExcento, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,7 +185,7 @@ public class IFCompra extends javax.swing.JInternalFrame {
                                                 .addComponent(txtGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(282, 282, 282)
                         .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -215,23 +220,26 @@ public class IFCompra extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(txtExcento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEspecifico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(txtNeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel10)
+                        .addGap(98, 98, 98)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(txtNeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(btnIngresar)
                 .addGap(52, 52, 52))
         );
@@ -242,10 +250,10 @@ public class IFCompra extends javax.swing.JInternalFrame {
     public void refreshcombo() { // LLENA EL COMBOBOX DE SEÑOR
             try {
                 DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+                Class.forName("org.apache.derby.jdbc.EmbeddedDriver"); //prueba es base de datos
+                String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
                 Connection conn = DriverManager.getConnection(url);
-                conn.setSchema("EDSON");
+                //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
                 s.execute("SELECT * FROM PROVEEDOR");
                 ResultSet rs = s.getResultSet();
@@ -291,11 +299,10 @@ public class IFCompra extends javax.swing.JInternalFrame {
             c.cond_venta = txtCond.getText();
             String numero = txtNumero.getText(); //numro de la factura
             
-            Class.forName("org.apache.derby.jdbc.ClientDriver");//prueba es base de datos
-
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("INSERT INTO FACT_C (NUM_FACTC,RUT_PROV,NETO,IVA,TOTAL,DESCRIPCION,ESPECIFICO,EXCENTO,ORDEN_C,GUIA_D,COND_VENTA) VALUES ('"+numero+"','"+c.rut+"','"+c.cantidad+"','"+c.iva+"','"+c.total+"','"+c.descripcion+"','"+c.especifico+"','"+c.excento+"','"+c.orden_c+"','"+c.guia_d+"','"+c.cond_venta+"')");
             JOptionPane.showMessageDialog(null, "Se ha ingresado correctamente la factura");
@@ -310,10 +317,10 @@ public class IFCompra extends javax.swing.JInternalFrame {
 
         try {
             
-            Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("SELECT * FROM PROVEEDOR where RUT_PROV = '" + rut + "'");
             ResultSet rs = s.getResultSet();
@@ -347,8 +354,9 @@ public class IFCompra extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtCond;
-    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtEspecifico;
     private javax.swing.JTextField txtExcento;
     private javax.swing.JTextField txtGuia;

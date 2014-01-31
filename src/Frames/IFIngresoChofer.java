@@ -176,11 +176,11 @@ public class IFIngresoChofer extends javax.swing.JInternalFrame {
             nuevo.Fono = txtFono.getText().toUpperCase();
             
             
-            Class.forName("org.apache.derby.jdbc.ClientDriver");//prueba es base de datos
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
 
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("INSERT INTO CHOFER (NOMBRE,RUT,FONO,APELLIDO) VALUES ('"+nuevo.Nombre+"','"+nuevo.Rut+"','"+nuevo.Fono+"','"+txtApellido.getText().toUpperCase()+"')");
             ResultSet rs = s.getResultSet();
@@ -234,10 +234,10 @@ public class IFIngresoChofer extends javax.swing.JInternalFrame {
         limpiarTabla(jTable1);
         try {
             
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("SELECT COD_CHOFER,NOMBRE,APELLIDO,RUT,FONO FROM CHOFER");
             

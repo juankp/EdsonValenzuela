@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -53,6 +54,11 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaVentas = new javax.swing.JTable();
         btnImprimir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cbxFiltro = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -77,6 +83,27 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Filtrar: ");
+
+        cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE" }));
+        cbxFiltro.setSelectedIndex(-1);
+        cbxFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxFiltroActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Mes:");
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(2014, 1992, 2100, 1));
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
+        jLabel3.setText("Año:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,16 +115,39 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnImprimir)
-                .addGap(243, 243, 243))
+                .addGap(217, 217, 217))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnImprimir)
-                .addContainerGap())
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -105,10 +155,10 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             
             String ubicacion = System.getProperty("user.dir")+"/src/Reportes/venta.jasper";
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(ubicacion);
@@ -121,16 +171,68 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void cbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFiltroActionPerformed
+        limpiarTabla(tablaVentas);
+        refreshtabla();
+    }//GEN-LAST:event_cbxFiltroActionPerformed
+
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        limpiarTabla(tablaVentas);
+        refreshtabla();
+    }//GEN-LAST:event_jSpinner1StateChanged
+    public void limpiarTabla(JTable tabla){
+        try {
+	            DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
+	            int filas=tabla.getRowCount();
+	            for (int i = 0;filas>i; i++) {
+	                modelo.removeRow(0);
+	            }
+	        } catch (Exception e) {
+	            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+	        }
+	    }
+    
     public void refreshtabla(){
         
+        int ano = Integer.parseInt(jSpinner1.getValue().toString());
+        int mes = 0;
+        if(cbxFiltro.getSelectedItem()== "ENERO"){
+            mes = 1;
+            }
+        else{
+        if(cbxFiltro.getSelectedItem()=="FEBRERO"){
+            mes = 2;}
+        if(cbxFiltro.getSelectedItem()=="MARZO"){
+            mes = 3;}
+        if(cbxFiltro.getSelectedItem()=="ABRIL"){
+            mes = 4;}
+        if(cbxFiltro.getSelectedItem()=="MAYO"){
+            mes = 5;}
+        if(cbxFiltro.getSelectedItem()=="JUNIO"){
+            mes = 6;}
+        if(cbxFiltro.getSelectedItem()=="JULIO"){
+            mes = 7;}
+        if(cbxFiltro.getSelectedItem()=="AGOSTO"){
+            mes = 8;}
+        if(cbxFiltro.getSelectedItem()=="SEPTIEMBRE"){
+            mes = 9;}
+        if(cbxFiltro.getSelectedItem()=="OCTUBRE"){
+            mes = 10;}
+        if(cbxFiltro.getSelectedItem()=="NOVIEMBRE"){
+            mes = 11;}
+        if(cbxFiltro.getSelectedItem()=="DICIEMBRE"){
+            mes = 12;}
+        
+        }
         try {
             
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("SELECT NUM_FACTV,RUT,COD_CHOFER,COD_CAMION,COD_RAMPLA,DESCRIPCION,CANTIDAD,PRECIO_U,IVA,TOTAL,ESPECIFICO,EXCENTO,COND_VENTA,ORDEN_C,GUIA_D,FECHA FROM FACT_V");
+            s.execute("SELECT NUM_FACTV,RUT,COD_CHOFER,COD_CAMION,COD_RAMPLA,DESCRIPCION,CANTIDAD,PRECIO_U,IVA,TOTAL,ESPECIFICO,EXCENTO,COND_VENTA,ORDEN_C,GUIA_D,FECHA FROM FACT_V WHERE MONTH(FECHA) = "+mes+" AND YEAR(FECHA) = "+ano+"");
             
             ResultSet rs = s.getResultSet();
             rsm = rs.getMetaData();
@@ -158,7 +260,12 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImprimir;
+    private javax.swing.JComboBox cbxFiltro;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable tablaVentas;
     // End of variables declaration//GEN-END:variables
 }

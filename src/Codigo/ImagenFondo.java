@@ -1,5 +1,5 @@
 
-package Clases;
+package Codigo;
 
 import java.awt.Component;
 import java.awt.Graphics;
@@ -15,7 +15,7 @@ public class ImagenFondo implements Border{
  
     public ImagenFondo(){
         try {
-            URL imagePath = new URL(getClass().getResource("../Img/menu.png").toString());
+            URL imagePath = new URL(getClass().getResource("/Img/menu.png").toString());
             back = ImageIO.read(imagePath);
         } catch (Exception ex) {            
         }

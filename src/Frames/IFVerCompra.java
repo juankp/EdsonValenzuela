@@ -54,6 +54,11 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCompra = new javax.swing.JTable();
         btnImprimir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cbxFiltro = new javax.swing.JComboBox();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -78,26 +83,67 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Filtro:");
+
+        jLabel2.setText("Mes:");
+
+        cbxFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE" }));
+        cbxFiltro.setSelectedIndex(-1);
+        cbxFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxFiltroActionPerformed(evt);
+            }
+        });
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(2014, 1992, 2100, 1));
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
+        jLabel3.setText("Año:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(296, 296, 296)
-                .addComponent(btnImprimir)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(297, 297, 297)
+                        .addComponent(btnImprimir))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(btnImprimir)
-                .addGap(0, 30, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -105,10 +151,10 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             
             String ubicacion = System.getProperty("user.dir")+"/src/Reportes/compra.jasper";
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(ubicacion);
@@ -121,6 +167,16 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void cbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFiltroActionPerformed
+        limpiarTabla(tablaCompra);
+        refreshtabla();
+    }//GEN-LAST:event_cbxFiltroActionPerformed
+
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        limpiarTabla(tablaCompra);
+        refreshtabla();
+    }//GEN-LAST:event_jSpinner1StateChanged
     public void limpiarTabla(JTable tabla){
         try {
 	            DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
@@ -134,14 +190,44 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
 	    }
     public void refreshtabla(){
         limpiarTabla(tablaCompra);
+        int ano = Integer.parseInt(jSpinner1.getValue().toString());
+        int mes = 0;
+        if(cbxFiltro.getSelectedItem()== "ENERO"){
+            mes = 1;
+            }
+        else{
+        if(cbxFiltro.getSelectedItem()=="FEBRERO"){
+            mes = 2;}
+        if(cbxFiltro.getSelectedItem()=="MARZO"){
+            mes = 3;}
+        if(cbxFiltro.getSelectedItem()=="ABRIL"){
+            mes = 4;}
+        if(cbxFiltro.getSelectedItem()=="MAYO"){
+            mes = 5;}
+        if(cbxFiltro.getSelectedItem()=="JUNIO"){
+            mes = 6;}
+        if(cbxFiltro.getSelectedItem()=="JULIO"){
+            mes = 7;}
+        if(cbxFiltro.getSelectedItem()=="AGOSTO"){
+            mes = 8;}
+        if(cbxFiltro.getSelectedItem()=="SEPTIEMBRE"){
+            mes = 9;}
+        if(cbxFiltro.getSelectedItem()=="OCTUBRE"){
+            mes = 10;}
+        if(cbxFiltro.getSelectedItem()=="NOVIEMBRE"){
+            mes = 11;}
+        if(cbxFiltro.getSelectedItem()=="DICIEMBRE"){
+            mes = 12;}
+        
+        }
         try {
             
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("SELECT NUM_FACTC,RUT_PROV,FECHA,ESPECIFICO,EXCENTO,DESCRIPCION,COND_VENTA,ORDEN_C,NETO,IVA,TOTAL FROM FACT_C");
+            s.execute("SELECT NUM_FACTC,RUT_PROV,FECHA,ESPECIFICO,EXCENTO,DESCRIPCION,COND_VENTA,ORDEN_C,NETO,IVA,TOTAL FROM FACT_C WHERE MONTH(FECHA) = "+mes+" AND YEAR(FECHA) = "+ano+"" );
             
             ResultSet rs = s.getResultSet();
             rsm = rs.getMetaData();
@@ -169,7 +255,12 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImprimir;
+    private javax.swing.JComboBox cbxFiltro;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable tablaCompra;
     // End of variables declaration//GEN-END:variables
 }

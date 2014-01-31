@@ -56,10 +56,10 @@ public class IFFactura extends javax.swing.JInternalFrame {
 
         try {
 
-            Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("SELECT NUM_FACTV FROM FACT_V");
             ResultSet rs = s.getResultSet();
@@ -78,10 +78,10 @@ public class IFFactura extends javax.swing.JInternalFrame {
     public void refreshcombo() { // LLENA EL COMBOBOX DE SEÑOR
             try {
                 DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
-                Connection conn = DriverManager.getConnection(url);
-                conn.setSchema("EDSON");
+                Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
                 s.execute("SELECT * FROM CLIENTE");
                 ResultSet rs = s.getResultSet();
@@ -101,10 +101,10 @@ public class IFFactura extends javax.swing.JInternalFrame {
     public void refreshcombo2() { //LLENA EL COMBOBOX DE CHOFER
             try {
                 DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
-                Connection conn = DriverManager.getConnection(url);
-                conn.setSchema("EDSON");
+                Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
                 s.execute("SELECT * FROM CHOFER");
                 ResultSet rs = s.getResultSet();
@@ -125,10 +125,10 @@ public class IFFactura extends javax.swing.JInternalFrame {
     public void refreshcombo3() { //LLENA EL COMBOBOX DE CAMION
             try {
                 DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
-                Connection conn = DriverManager.getConnection(url);
-                conn.setSchema("EDSON");
+               Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
                 s.execute("SELECT * FROM CAMION");
                 ResultSet rs = s.getResultSet();
@@ -149,10 +149,10 @@ public class IFFactura extends javax.swing.JInternalFrame {
         
             try {
                 DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
-                Connection conn = DriverManager.getConnection(url);
-                conn.setSchema("EDSON");
+                Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
                 s.execute("SELECT * FROM RAMPLA");
                 ResultSet rs = s.getResultSet();
@@ -175,10 +175,10 @@ public class IFFactura extends javax.swing.JInternalFrame {
         chofer = cbxChofer.getSelectedItem().toString();
         try {
                 
-                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
-                Connection conn = DriverManager.getConnection(url);
-                conn.setSchema("EDSON");
+                Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
                 s.execute("SELECT * FROM CHOFER WHERE RUT = '" + cbxChofer.getSelectedItem().toString() + "'");
                 ResultSet rs = s.getResultSet();
@@ -201,10 +201,10 @@ public class IFFactura extends javax.swing.JInternalFrame {
         chofer = cbxcamion.getSelectedItem().toString();
         try {
                 
-                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
-                Connection conn = DriverManager.getConnection(url);
-                conn.setSchema("EDSON");
+                Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
                 s.execute("SELECT * FROM CAMION WHERE PATENTE = '"+ chofer +"'");
                 ResultSet rs = s.getResultSet();
@@ -227,10 +227,10 @@ public class IFFactura extends javax.swing.JInternalFrame {
         chofer = cbxrampla.getSelectedItem().toString();
         try {
                 
-                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
-                Connection conn = DriverManager.getConnection(url);
-                conn.setSchema("EDSON");
+                Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
                 s.execute("SELECT * FROM RAMPLA WHERE PATENTE = '"+ chofer +"'");
                 ResultSet rs = s.getResultSet();
@@ -664,10 +664,10 @@ public class IFFactura extends javax.swing.JInternalFrame {
 
         try {
             
-            Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("SELECT * FROM CLIENTE where NOMBRE = '" + nombre + "'");
             ResultSet rs = s.getResultSet();
@@ -861,11 +861,10 @@ public class IFFactura extends javax.swing.JInternalFrame {
             f.cond_venta = txtcond.getText();
             f.orden_c = txtoc.getText();
             
-            Class.forName("org.apache.derby.jdbc.ClientDriver");//prueba es base de datos
-
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("INSERT INTO FACT_V (RUT,COD_CHOFER,COD_CAMION,COD_RAMPLA,DESCRIPCION,CANTIDAD,PRECIO_U,TOTAL,IVA,ESPECIFICO,EXCENTO,COND_VENTA,ORDEN_C,GUIA_D) VALUES ('"+f.rut+"',"+f.cod_chofer+","+f.cod_camion+","+f.cod_rampla+",'"+f.descripcion+"','"+f.cantidad+"','"+f.precio_u+"','"+f.total+"','"+f.iva+"','"+f.especifico+"','"+f.excento+"','"+f.cond_venta+"','"+f.orden_c+"','"+f.guia_d+"')");
 //            ResultSet rs = s.getResultSet();

@@ -328,10 +328,10 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
             
             
             //DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-            Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("UPDATE CLIENTE SET RAZON = '" + txtRazon.getText() + "',"
                     + " GIRO = '" + txtGiro.getText() + "',"
@@ -340,7 +340,7 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
                     + " CIUDAD = '" + txtCiudad.getText() + "',"
                     + " FONO = '" + txtFono.getText() + "',"
                     + " EMAIL = '" + txtEmail.getText() + "',"
-                    + " WEB_PROV = '" + txtWeb.getText() + "'"
+                    + " WEB = '" + txtWeb.getText() + "'"
                     + " where RUT = '" + rut + "' ");
             
            
@@ -367,10 +367,10 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
         public void refreshcombo() {
             try {
                 DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
-                Connection conn = DriverManager.getConnection(url);
-                conn.setSchema("EDSON");
+                Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
                 s.execute("SELECT * FROM CLIENTE");
                 ResultSet rs = s.getResultSet();
@@ -391,10 +391,10 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
 
         try {
             DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-            Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("SELECT * FROM CLIENTE where NOMBRE = '" + nombre + "'");
             ResultSet rs = s.getResultSet();

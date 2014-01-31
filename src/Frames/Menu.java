@@ -4,7 +4,7 @@
  */
 package Frames;
 
-import Clases.ImagenFondo;
+import Codigo.ImagenFondo;
 import java.sql.SQLException;
 import Codigo.conexion;
 import static java.awt.Frame.MAXIMIZED_BOTH;
@@ -28,9 +28,7 @@ public class Menu extends javax.swing.JFrame {
         this.setExtendedState(Menu.MAXIMIZED_BOTH);
         conexion con = new conexion();
         con.conectar();
-        NetworkServerControl server = new NetworkServerControl
-        (InetAddress.getByName("localhost"),1527);
-        server.start(null);
+        
         
         
     }
@@ -59,8 +57,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItem25 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
+        jMenuItem26 = new javax.swing.JMenuItem();
+        jMenuItem27 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -186,6 +187,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem23);
 
+        jMenuItem25.setText("Anular Factura Venta");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem25);
+
         jMenuItem22.setText("Compra");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,6 +210,22 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem24);
+
+        jMenuItem26.setText("Modificar Factura Compra");
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem26);
+
+        jMenuItem27.setText("Eliminar Factura Compra");
+        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem27ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem27);
 
         jMenuBar1.add(jMenu3);
 
@@ -490,6 +515,24 @@ public class Menu extends javax.swing.JFrame {
        mod.show();
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+        IFAnularFactura mod = new IFAnularFactura();
+        jDesktopPane1.add(mod);
+        mod.show();
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
+
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+        IFModificarFacturaCompra mod = new IFModificarFacturaCompra();
+        jDesktopPane1.add(mod);
+        mod.show();
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
+
+    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
+        IFEliminarFacturaCompra mod = new IFEliminarFacturaCompra();
+        jDesktopPane1.add(mod);
+        mod.show();
+    }//GEN-LAST:event_jMenuItem27ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -561,6 +604,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
+    private javax.swing.JMenuItem jMenuItem25;
+    private javax.swing.JMenuItem jMenuItem26;
+    private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

@@ -351,11 +351,11 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
             web = nuevo.web;
             razon = nuevo.razon;
 
-            Class.forName("org.apache.derby.jdbc.ClientDriver");//prueba es base de datos
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
 
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("INSERT INTO CLIENTE (NOMBRE,RUT,RAZON,DIRECCION,COMUNA,CIUDAD,FONO,EMAIL,WEB,GIRO) VALUES ('" + name + "','" + rut + "','" + razon + "','" + direccion + "','" + comuna + "','" + ciudad + "','" + fono + "','" + email + "','" + web + "','" + giro + "')");
             ResultSet rs = s.getResultSet();
@@ -406,10 +406,10 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
         limpiarTabla(jTable1);
         try {
 
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("SELECT NOMBRE,RUT,RAZON,DIRECCION,COMUNA,CIUDAD,FONO,EMAIL,WEB,GIRO FROM CLIENTE");
 
@@ -439,8 +439,8 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
 
         try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
             conn.setSchema("EDSON");
 

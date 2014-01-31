@@ -197,11 +197,11 @@ public class IFIngresoRampla extends javax.swing.JInternalFrame {
             nuevo.Anio = txtAnio.getText().toUpperCase();
             nuevo.Tipo = txtTipo.getText().toUpperCase();
             
-            Class.forName("org.apache.derby.jdbc.ClientDriver");//prueba es base de datos
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
 
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("INSERT INTO RAMPLA (PATENTE,MARCA,MODELO,ANIO,TIPO) VALUES ('"+nuevo.Patente+"','"+nuevo.Marca+"','"+nuevo.Modelo+"','"+nuevo.Anio+"','"+nuevo.Tipo+"')");
             ResultSet rs = s.getResultSet();
@@ -257,7 +257,7 @@ public class IFIngresoRampla extends javax.swing.JInternalFrame {
         try {
             
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
             conn.setSchema("EDSON");
             Statement s = conn.createStatement();

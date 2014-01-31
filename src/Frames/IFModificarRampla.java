@@ -174,10 +174,10 @@ public class IFModificarRampla extends javax.swing.JInternalFrame {
         String pat = cbxPatente.getSelectedItem().toString();
         
         try {
-             Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("UPDATE RAMPLA SET MARCA = '" + txtMarca.getText() + "',"
                     + " MODELO = '" + txtModelo.getText() + "',"
@@ -209,10 +209,10 @@ public class IFModificarRampla extends javax.swing.JInternalFrame {
 
         try {
             DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-            Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-            String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
+            //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
             s.execute("SELECT * FROM RAMPLA where PATENTE = '" + patente + "'");
             ResultSet rs = s.getResultSet();
@@ -254,10 +254,10 @@ if((car<'0' || car>'9')) evt.consume();
     public void refreshcombo() {
             try {
                 DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-                Class.forName("org.apache.derby.jdbc.ClientDriver"); //prueba es base de datos
-                String url = "jdbc:derby://localhost/Edson;create=true;user=edson;password=edson";
-                Connection conn = DriverManager.getConnection(url);
-                conn.setSchema("EDSON");
+               Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
                 s.execute("SELECT * FROM RAMPLA");
                 ResultSet rs = s.getResultSet();

@@ -17,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author Yo elijo mi pc
  */
-public class IFEliminarCamion extends javax.swing.JInternalFrame {
+public class IFEliminarFacturaCompra extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form IFEliminarCamion
+     * Creates new form IFEliminarFacturaCompra
      */
-    public IFEliminarCamion() {
+    public IFEliminarFacturaCompra() {
         initComponents();
         refreshcombo();
     }
@@ -36,6 +36,7 @@ public class IFEliminarCamion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         cbxEliminar = new javax.swing.JComboBox();
         btnEliminar = new javax.swing.JButton();
 
@@ -43,7 +44,9 @@ public class IFEliminarCamion extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("ELIMINAR CAMION ::: TRANPORTES EDSON");
+        setTitle("ELIMINAR FACTURA COMPRA ::: TRANPORTES EDSON");
+
+        jLabel1.setText("N° Factura:");
 
         cbxEliminar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -58,42 +61,68 @@ public class IFEliminarCamion extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(74, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cbxEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(141, 141, 141))))
+                    .addComponent(cbxEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(108, 108, 108))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addComponent(cbxEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        String num = cbxEliminar.getSelectedItem().toString();
+        try {
+            
+            
+            //DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
+            Statement s = conn.createStatement();
+            s.execute("DELETE FROM FACT_C  where NUM_FACTC = '" + num + "' ");
+            
+           
+            conn.close();
+            JOptionPane.showMessageDialog(null, "Se ha eliminado la factura numero "+num+" de la base de datos");
+        
+           //Limpiar Campos 
+            refreshcombo();
+        
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
     public void refreshcombo() {
             try {
                 DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
                 Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
-                String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
-                Connection conn = DriverManager.getConnection(url);
-                //conn.setSchema("EDSON");
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
                 Statement s = conn.createStatement();
-                s.execute("SELECT * FROM CAMION");
+                s.execute("SELECT * FROM FACT_C");
                 ResultSet rs = s.getResultSet();
 
                 while (rs.next()) {
-                    modeloCombo.addElement(rs.getObject("PATENTE"));
+                    modeloCombo.addElement(rs.getObject("NUM_FACTC"));
                 }
                 conn.close();
                 cbxEliminar.setModel(modeloCombo);
@@ -101,36 +130,11 @@ public class IFEliminarCamion extends javax.swing.JInternalFrame {
             } catch (Exception e) {
             }
 
-    }   
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        String patente = cbxEliminar.getSelectedItem().toString();
-        try {
-            
-            
-            //DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
-           Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
-            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
-            Connection conn = DriverManager.getConnection(url);
-            //conn.setSchema("EDSON");
-            Statement s = conn.createStatement();
-            s.execute("DELETE FROM CAMION  where PATENTE = '" + patente + "' ");
-            
-           
-            conn.close();
-            JOptionPane.showMessageDialog(null, "Se ha eliminado el camión patente: "+patente+" de la base de datos");
-        
-           //Limpiar Campos 
-        refreshcombo();
-        
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEliminar;
     private javax.swing.JComboBox cbxEliminar;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
