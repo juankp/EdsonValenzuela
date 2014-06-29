@@ -61,7 +61,6 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("MODIFICAR PROVEEDORES ::: TRANSPORTES EDSON");
 
         jLabel1.setText("Nombre:");
@@ -103,31 +102,16 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
                 txtRazonProvActionPerformed(evt);
             }
         });
-        txtRazonProv.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRazonProvKeyTyped(evt);
-            }
-        });
 
         txtGiroProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtGiroProvActionPerformed(evt);
             }
         });
-        txtGiroProv.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtGiroProvKeyTyped(evt);
-            }
-        });
 
         txtComunaProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtComunaProvActionPerformed(evt);
-            }
-        });
-        txtComunaProv.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtComunaProvKeyTyped(evt);
             }
         });
 
@@ -145,11 +129,6 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
         txtCiudadProv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCiudadProvActionPerformed(evt);
-            }
-        });
-        txtCiudadProv.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCiudadProvKeyTyped(evt);
             }
         });
 
@@ -185,27 +164,24 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnModificarProv)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cbxProv, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtRutAct)
-                            .addComponent(txtRazonProv)
-                            .addComponent(txtGiroProv, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(9, 9, 9))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cbxProv, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtRutAct)
+                    .addComponent(txtRazonProv)
+                    .addComponent(txtGiroProv, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(9, 9, 9))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(txtComunaProv, javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,6 +197,10 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
                     .addComponent(txtEmailProv, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
                     .addComponent(txtWebProv))
                 .addGap(50, 50, 50))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(237, 237, 237)
+                .addComponent(btnModificarProv)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,9 +248,9 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(txtWebProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(41, 41, 41)
+                .addGap(35, 35, 35)
                 .addComponent(btnModificarProv)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
@@ -324,14 +304,14 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("UPDATE PROVEEDOR SET RAZON_PROV = '" + txtRazonProv.getText() + "',"
-                    + " GIRO_PROV = '" + txtGiroProv.getText() + "',"
-                    + " DIRECCION_PROV = '" + txtDirProv.getText() + "',"
-                    + " COMUNA_PROV = '" + txtComunaProv.getText() + "',"
-                    + " CIUDAD_PROV = '" + txtCiudadProv.getText() + "',"
+            s.execute("UPDATE PROVEEDOR SET RAZON_PROV = '" + txtRazonProv.getText().toUpperCase() + "',"
+                    + " GIRO_PROV = '" + txtGiroProv.getText().toUpperCase() + "',"
+                    + " DIRECCION_PROV = '" + txtDirProv.getText().toUpperCase() + "',"
+                    + " COMUNA_PROV = '" + txtComunaProv.getText().toUpperCase() + "',"
+                    + " CIUDAD_PROV = '" + txtCiudadProv.getText().toUpperCase() + "',"
                     + " FONO_PROV = '" + txtFonoProv.getText() + "',"
-                    + " EMAIL_PROV = '" + txtEmailProv.getText() + "',"
-                    + " WEB_PROV = '" + txtWebProv.getText() + "'"
+                    + " EMAIL_PROV = '" + txtEmailProv.getText().toUpperCase() + "',"
+                    + " WEB_PROV = '" + txtWebProv.getText().toUpperCase() + "'"
                     + " where RUT_PROV = '" + rut + "' ");
             
            
@@ -411,26 +391,6 @@ public class IFModificarProve extends javax.swing.JInternalFrame {
             }
 
     }//GEN-LAST:event_cbxProvActionPerformed
-
-    private void txtRazonProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonProvKeyTyped
-        char car = evt.getKeyChar();
-if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtRazonProvKeyTyped
-
-    private void txtGiroProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGiroProvKeyTyped
-        char car = evt.getKeyChar();
-if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtGiroProvKeyTyped
-
-    private void txtComunaProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComunaProvKeyTyped
-        char car = evt.getKeyChar();
-if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtComunaProvKeyTyped
-
-    private void txtCiudadProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadProvKeyTyped
-        char car = evt.getKeyChar();
-if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtCiudadProvKeyTyped
 
     private void txtFonoProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFonoProvKeyTyped
         char car = evt.getKeyChar();

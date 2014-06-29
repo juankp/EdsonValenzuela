@@ -58,18 +58,17 @@ public class IFVerChoferes extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("LISTA DE CHOFERES ::: TRANSPORTES EDSON");
 
         TablaChofer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "CODIGO", "RUT", "NOMBRE", "APELLIDO", "FONO"
+                "CODIGO", "RUT", "NOMBRE", "FONO"
             }
         ));
         jScrollPane1.setViewportView(TablaChofer);
@@ -87,21 +86,22 @@ public class IFVerChoferes extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnGenerar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(btnGenerar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addComponent(btnGenerar)
-                .addContainerGap())
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,7 +145,7 @@ public class IFVerChoferes extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("SELECT COD_CHOFER,RUT,NOMBRE,APELLIDO,FONO FROM CHOFER");
+            s.execute("SELECT COD_CHOFER,RUT,NOMBRE,FONO FROM CHOFER");
             
             ResultSet rs = s.getResultSet();
             rsm = rs.getMetaData();

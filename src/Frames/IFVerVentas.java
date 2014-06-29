@@ -6,6 +6,7 @@
 
 package Frames;
 
+import Codigo.Datos;
 import Codigo.conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,13 +16,21 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRReport;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRDesignViewer;
+import net.sf.jasperreports.view.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -59,19 +68,21 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
+        btnGenerar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("LISTA DE VENTA ::: TRANSPORTES EDSON");
+        setAutoscrolls(true);
 
         tablaVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "NUMERO", "RUT", "COD CHOFER", "COD CAMION", "COD RAMPLA", "DESCRIPCION", "CANTIDAD", "PRECIO_U", "TOTAL", "IVA", "ESPECIFICO", "EXCENTO", "COND VENTA", "OC", "GUIA", "FECHA"
+                "NUMERO", "RUT", "COD CHOFER", "COD CAMION", "COD RAMPLA", "DESCRIPCION", "CANTIDAD", "PRECIO_U", "TOTAL", "IVA", "COND VENTA", "OC", "GUIA", "FECHA", "EXCENTO"
             }
         ));
         jScrollPane1.setViewportView(tablaVentas);
@@ -104,32 +115,43 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Año:");
 
+        btnGenerar.setText("GENERAR TODO");
+        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnImprimir)
-                .addGap(217, 217, 217))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel1))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGenerar)
+                .addGap(63, 63, 63)
+                .addComponent(btnImprimir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -146,8 +168,10 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnImprimir)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnImprimir)
+                    .addComponent(btnGenerar))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,16 +179,30 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
         try {
-            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
-            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
-            Connection conn = DriverManager.getConnection(url);
-            //conn.setSchema("EDSON");
             
-            String ubicacion = System.getProperty("user.dir")+"/src/Reportes/venta.jasper";
+            int fila = 0;
+            
+            List resultados = new ArrayList();
+            Datos tipo;
+            resultados.clear();
+            for (fila = 0;  fila< tablaVentas.getRowCount(); fila++) {
+                tipo = new Datos(String.valueOf(tablaVentas.getValueAt(fila,0)),
+                       String.valueOf(tablaVentas.getValueAt(fila,1)),String.valueOf(tablaVentas.getValueAt(fila,2)),
+                        String.valueOf(tablaVentas.getValueAt(fila,3)),String.valueOf(tablaVentas.getValueAt(fila,4)),
+                        String.valueOf(tablaVentas.getValueAt(fila,5)),String.valueOf(tablaVentas.getValueAt(fila,14)),
+                        String.valueOf(tablaVentas.getValueAt(fila,13)),String.valueOf(tablaVentas.getValueAt(fila,12)),
+                        String.valueOf(tablaVentas.getValueAt(fila,8)));
+                resultados.add(tipo);
+            }
+            Map parametro = new HashMap();
+            parametro.put("Mes", cbxFiltro.getSelectedItem());
+            parametro.put("Año", jSpinner1.getValue().toString());
+            String ubicacion = System.getProperty("user.dir")+"/src/Reportes/VentasFiltradas.jasper";
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(ubicacion);
-            JasperPrint print = JasperFillManager.fillReport(jasperReport, null,conn);
+            JasperPrint print = JasperFillManager.fillReport(jasperReport, parametro, new JRBeanCollectionDataSource(resultados));
             JasperViewer view = new JasperViewer(print,false);
             view.setVisible(true);
+              
             
            
         } catch (Exception e) {
@@ -181,6 +219,25 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
         limpiarTabla(tablaVentas);
         refreshtabla();
     }//GEN-LAST:event_jSpinner1StateChanged
+
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+        try{
+        Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
+            
+            String ubicacion = System.getProperty("user.dir")+"/src/Reportes/venta.jasper";
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(ubicacion);
+            JasperPrint print = JasperFillManager.fillReport(jasperReport, null,conn);
+            JasperViewer view = new JasperViewer(print,false);
+            view.setVisible(true);
+            
+           conn.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_btnGenerarActionPerformed
     public void limpiarTabla(JTable tabla){
         try {
 	            DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
@@ -232,7 +289,7 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("SELECT NUM_FACTV,RUT,COD_CHOFER,COD_CAMION,COD_RAMPLA,DESCRIPCION,CANTIDAD,PRECIO_U,IVA,TOTAL,ESPECIFICO,EXCENTO,COND_VENTA,ORDEN_C,GUIA_D,FECHA FROM FACT_V WHERE MONTH(FECHA) = "+mes+" AND YEAR(FECHA) = "+ano+"");
+            s.execute("SELECT NUM_FACTV,RUT,COD_CHOFER,COD_CAMION,COD_RAMPLA,DESCRIPCION,CANTIDAD,PRECIO_U,TOTAL,IVA,COND_VENTA,ORDEN_C,GUIA_D,FECHA,EXCENTO FROM FACT_V WHERE MONTH(FECHA) = "+mes+" AND YEAR(FECHA) = "+ano+"");
             
             ResultSet rs = s.getResultSet();
             rsm = rs.getMetaData();
@@ -253,12 +310,14 @@ public class IFVerVentas extends javax.swing.JInternalFrame {
                 dtm.addRow(data.get(i));
                 
             }
+            conn.close();
         } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGenerar;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JComboBox cbxFiltro;
     private javax.swing.JLabel jLabel1;

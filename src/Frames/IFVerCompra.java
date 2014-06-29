@@ -6,6 +6,8 @@
 
 package Frames;
 
+import Codigo.Datos;
+import Codigo.DatosCompra;
 import Codigo.conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,12 +17,16 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -59,6 +65,7 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
         cbxFiltro = new javax.swing.JComboBox();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
+        bntListado = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -71,12 +78,12 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "NUMERO", "RUT PROVEEDOR", "FECHA", "ESPECIFICO", "EXCENTO", "DESCRIPCION", "COND. VENTA", "OC", "NETO", "IVA", "TOTAL"
+                "CODIGO", "NUMERO", "RUT PROVEEDOR", "FECHA", "ESPECIFICO", "EXCENTO", "DESCRIPCION", "COND. VENTA", "OC", "NETO", "IVA", "TOTAL"
             }
         ));
         jScrollPane1.setViewportView(tablaCompra);
 
-        btnImprimir.setText("GENERAR");
+        btnImprimir.setText("GENERAR TODO");
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImprimirActionPerformed(evt);
@@ -104,28 +111,36 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Año:");
 
+        bntListado.setText("GENERAR LISTADO");
+        bntListado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntListadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(297, 297, 297)
-                        .addComponent(btnImprimir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1))))
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addContainerGap(341, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnImprimir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bntListado)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,11 +154,17 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
                     .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(btnImprimir)
-                .addGap(20, 20, 20))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 84, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bntListado)
+                            .addComponent(btnImprimir))
+                        .addGap(30, 30, 30))))
         );
 
         pack();
@@ -162,7 +183,7 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
             JasperViewer view = new JasperViewer(print,false);
             view.setVisible(true);
             
-           
+             conn.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
         }
@@ -177,6 +198,37 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
         limpiarTabla(tablaCompra);
         refreshtabla();
     }//GEN-LAST:event_jSpinner1StateChanged
+
+    private void bntListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntListadoActionPerformed
+        try {
+
+            int fila = 0;
+            
+            List resultados = new ArrayList();
+            DatosCompra tipo;
+            resultados.clear();
+            for (fila = 0;  fila< tablaCompra.getRowCount(); fila++) {
+                tipo = new DatosCompra(String.valueOf(tablaCompra.getValueAt(fila,1)),
+                        String.valueOf(tablaCompra.getValueAt(fila,2)),String.valueOf(tablaCompra.getValueAt(fila,3)),
+                        String.valueOf(tablaCompra.getValueAt(fila,6)),String.valueOf(tablaCompra.getValueAt(fila,7)),
+                        String.valueOf(tablaCompra.getValueAt(fila,8)),String.valueOf(tablaCompra.getValueAt(fila,11)));
+                resultados.add(tipo);
+            }
+            Map parametro = new HashMap();
+            parametro.put("Mes", cbxFiltro.getSelectedItem());
+            parametro.put("Año", jSpinner1.getValue().toString());
+            String ubicacion = System.getProperty("user.dir")+"/src/Reportes/ComprasFiltradas.jasper";
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(ubicacion);
+            JasperPrint print = JasperFillManager.fillReport(jasperReport, parametro, new JRBeanCollectionDataSource(resultados));
+            JasperViewer view = new JasperViewer(print,false);
+            view.setVisible(true);
+              
+            resultados.clear();
+           
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+    }//GEN-LAST:event_bntListadoActionPerformed
     public void limpiarTabla(JTable tabla){
         try {
 	            DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
@@ -227,7 +279,7 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("SELECT NUM_FACTC,RUT_PROV,FECHA,ESPECIFICO,EXCENTO,DESCRIPCION,COND_VENTA,ORDEN_C,NETO,IVA,TOTAL FROM FACT_C WHERE MONTH(FECHA) = "+mes+" AND YEAR(FECHA) = "+ano+"" );
+            s.execute("SELECT COD_FACTC,NUM_FACTC,RUT_PROV,FECHA,ESPECIFICO,EXCENTO,DESCRIPCION,COND_VENTA,ORDEN_C,NETO,IVA,TOTAL FROM FACT_C WHERE MONTH(FECHA) = "+mes+" AND YEAR(FECHA) = "+ano+"" );
             
             ResultSet rs = s.getResultSet();
             rsm = rs.getMetaData();
@@ -254,6 +306,7 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntListado;
     private javax.swing.JButton btnImprimir;
     private javax.swing.JComboBox cbxFiltro;
     private javax.swing.JLabel jLabel1;

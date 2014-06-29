@@ -39,14 +39,15 @@ public class IFEliminarFacturaCompra extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         cbxEliminar = new javax.swing.JComboBox();
         btnEliminar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("ELIMINAR FACTURA COMPRA ::: TRANPORTES EDSON");
 
-        jLabel1.setText("N° Factura:");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Código Factura:");
 
         cbxEliminar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -57,36 +58,45 @@ public class IFEliminarFacturaCompra extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Seleccione el código de la factura que desea eliminar: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbxEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(108, 108, 108))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(116, 116, 116))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbxEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63))
+                .addGap(71, 71, 71)
+                .addComponent(btnEliminar)
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        String num = cbxEliminar.getSelectedItem().toString();
+        String cod = cbxEliminar.getSelectedItem().toString();
         try {
             
             
@@ -96,11 +106,11 @@ public class IFEliminarFacturaCompra extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("DELETE FROM FACT_C  where NUM_FACTC = '" + num + "' ");
+            s.execute("DELETE FROM FACT_C where CAST(COD_FACTC AS CHAR) = '" + cod + "' ");
             
            
             conn.close();
-            JOptionPane.showMessageDialog(null, "Se ha eliminado la factura numero "+num+" de la base de datos");
+            JOptionPane.showMessageDialog(null, "Se ha eliminado la factura codigo "+cod+" de la base de datos");
         
            //Limpiar Campos 
             refreshcombo();
@@ -122,7 +132,7 @@ public class IFEliminarFacturaCompra extends javax.swing.JInternalFrame {
                 ResultSet rs = s.getResultSet();
 
                 while (rs.next()) {
-                    modeloCombo.addElement(rs.getObject("NUM_FACTC"));
+                    modeloCombo.addElement(rs.getObject("COD_FACTC"));
                 }
                 conn.close();
                 cbxEliminar.setModel(modeloCombo);
@@ -136,5 +146,6 @@ public class IFEliminarFacturaCompra extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JComboBox cbxEliminar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

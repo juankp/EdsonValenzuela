@@ -8,10 +8,12 @@ import Codigo.ImagenFondo;
 import java.sql.SQLException;
 import Codigo.conexion;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.beans.PropertyVetoException;
 import java.net.InetAddress;
 import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JScrollPane;
 import org.apache.derby.drda.NetworkServerControl;
 
 
@@ -58,6 +60,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenuItem25 = new javax.swing.JMenuItem();
+        jMenuItem29 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenuItem26 = new javax.swing.JMenuItem();
@@ -77,12 +80,15 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem28 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("COMPRAS Y FACTURACION ::: TRANSPORTES EDSON");
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/cliente.png"))); // NOI18N
         jMenu1.setText("Clientes");
+        jMenu1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem1.setText("Agregar");
@@ -124,6 +130,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/proveedor.png"))); // NOI18N
         jMenu2.setText("Proveedores");
+        jMenu2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jMenu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu2ActionPerformed(evt);
@@ -169,6 +176,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/factura.png"))); // NOI18N
         jMenu3.setText("Factura");
+        jMenu3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setText("Venta");
@@ -194,6 +202,14 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem25);
+
+        jMenuItem29.setText("Eliminar Factura Venta");
+        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem29ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem29);
 
         jMenuItem22.setText("Compra");
         jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
@@ -231,6 +247,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/camion.png"))); // NOI18N
         jMenu4.setText("Camiones");
+        jMenu4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jMenuItem8.setText("Agregar");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -268,6 +285,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/chofer.png"))); // NOI18N
         jMenu5.setText("Choferes");
+        jMenu5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jMenuItem11.setText("Agregar");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
@@ -305,6 +323,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/container.png"))); // NOI18N
         jMenu6.setText("Ramplas");
+        jMenu6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jMenuItem14.setText("Ingresar");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
@@ -340,13 +359,27 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/ayuda.png"))); // NOI18N
+        jMenu7.setText("Acerca de");
+        jMenu7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        jMenuItem28.setText("About");
+        jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem28ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem28);
+
+        jMenuBar1.add(jMenu7);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 944, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,12 +393,14 @@ public class Menu extends javax.swing.JFrame {
         
         IFIngresoClientes cli = new IFIngresoClientes();
         jDesktopPane1.add(cli);
+        
         cli.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         IFIngresoProve cli2 = new IFIngresoProve();
         jDesktopPane1.add(cli2);
+        
         cli2.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -375,16 +410,17 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         IFModificarProve cli3 = new IFModificarProve();
+        
         jDesktopPane1.add(cli3);
         cli3.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        
-        
+               
         try {
             IFFactura fact;
             fact = new IFFactura();
+            
             jDesktopPane1.add(fact);
         fact.show();
         } catch (ClassNotFoundException ex) {
@@ -464,36 +500,62 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         IFEliminarProve mod = new IFEliminarProve();
         jDesktopPane1.add(mod);
+        
         mod.show();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         IFVerClientes mod = new IFVerClientes();
         jDesktopPane1.add(mod);
+        try {
+            mod.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         mod.show();
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         IFVerCamiones mod = new IFVerCamiones();
         jDesktopPane1.add(mod);
+        try {
+            mod.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         mod.show();
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         IFVerProve mod = new IFVerProve();
         jDesktopPane1.add(mod);
+        try {
+            mod.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         mod.show();
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         IFVerChoferes mod = new IFVerChoferes();
         jDesktopPane1.add(mod);
+        try {
+            mod.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         mod.show();
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         IFVerRampla mod = new IFVerRampla();
         jDesktopPane1.add(mod);
+        try {
+            mod.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         mod.show();
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
@@ -506,12 +568,22 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
        IFVerCompra mod = new IFVerCompra();
        jDesktopPane1.add(mod);
+       try {
+            mod.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
        mod.show();
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
        IFVerVentas mod = new IFVerVentas();
        jDesktopPane1.add(mod);
+       try {
+            mod.setMaximum(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
        mod.show();
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
@@ -532,6 +604,18 @@ public class Menu extends javax.swing.JFrame {
         jDesktopPane1.add(mod);
         mod.show();
     }//GEN-LAST:event_jMenuItem27ActionPerformed
+
+    private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
+        IFInformacion mod = new IFInformacion();
+        jDesktopPane1.add(mod);
+        mod.show();
+    }//GEN-LAST:event_jMenuItem28ActionPerformed
+
+    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+        IFEliminarVenta mod = new IFEliminarVenta();
+        jDesktopPane1.add(mod);
+        mod.show();
+    }//GEN-LAST:event_jMenuItem29ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -586,6 +670,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -607,6 +692,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem27;
+    private javax.swing.JMenuItem jMenuItem28;
+    private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

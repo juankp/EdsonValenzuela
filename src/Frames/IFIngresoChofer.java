@@ -1,7 +1,7 @@
-
-
 package Frames;
 
+import Codigo.FormatoRut;
+import Codigo.ValidadorDeRut;
 import Codigo.camion;
 import Codigo.chofer;
 import java.awt.HeadlessException;
@@ -12,7 +12,10 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,7 +23,7 @@ public class IFIngresoChofer extends javax.swing.JInternalFrame {
 
     ResultSetMetaData rsm;
     DefaultTableModel dtm;
-    
+
     public IFIngresoChofer() {
         initComponents();
         refreshtabla();
@@ -39,24 +42,25 @@ public class IFIngresoChofer extends javax.swing.JInternalFrame {
         txtRut = new javax.swing.JTextField();
         txtFono = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel4 = new javax.swing.JLabel();
-        txtApellido = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("INGRESO CHOFER ::: TRANSPORTES EDSON");
         setToolTipText("");
 
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtRut.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                Validar(evt);
+            }
+        });
+        txtRut.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
+                txtRutKeyTyped(evt);
             }
         });
 
@@ -67,10 +71,7 @@ public class IFIngresoChofer extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Nombre: ");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Rut:");
+        jLabel1.setText("Nombre Completo: ");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Fono:");
@@ -84,25 +85,19 @@ public class IFIngresoChofer extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nombre", "Apellido", "Rut", "Fono"
+                "Codigo", "Nombre", "Rut", "Fono"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Apellido:");
-
-        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtApellidoKeyTyped(evt);
-            }
-        });
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("RUT (sin puntos ni guión)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,33 +106,23 @@ public class IFIngresoChofer extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(btnIngresar)
-                        .addGap(0, 178, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 10, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFono, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFono, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(39, 39, 39)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(170, 170, 170)
+                        .addComponent(btnIngresar)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,44 +130,45 @@ public class IFIngresoChofer extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(btnIngresar)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         
+
+
         try {
+
             chofer nuevo = new chofer();
-            
+
             nuevo.Nombre = txtNombre.getText().toUpperCase();
             nuevo.Rut = txtRut.getText().toUpperCase();
             nuevo.Fono = txtFono.getText().toUpperCase();
-            
-            
+
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
 
             String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("INSERT INTO CHOFER (NOMBRE,RUT,FONO,APELLIDO) VALUES ('"+nuevo.Nombre+"','"+nuevo.Rut+"','"+nuevo.Fono+"','"+txtApellido.getText().toUpperCase()+"')");
+            s.execute("INSERT INTO CHOFER (NOMBRE,RUT,FONO) VALUES ('" + nuevo.Nombre + "','" + nuevo.Rut + "','" + nuevo.Fono + "')");
             ResultSet rs = s.getResultSet();
 
             refreshtabla();
@@ -193,72 +179,95 @@ public class IFIngresoChofer extends javax.swing.JInternalFrame {
             txtFono.setText(" ");
             txtNombre.setText(" ");
             txtRut.setText(" ");
-            txtApellido.setText(" ");
-            
-           
+
             conn.close();
         } catch (ClassNotFoundException | SQLException | HeadlessException e) {
             JOptionPane.showMessageDialog(this, e);
+        } catch (Exception ex) {
+            Logger.getLogger(IFIngresoChofer.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+
     }//GEN-LAST:event_btnIngresarActionPerformed
-
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtNombreKeyTyped
-
-    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtApellidoKeyTyped
 
     private void txtFonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFonoKeyTyped
         char car = evt.getKeyChar();
-        if((car<'0' || car>'9')) evt.consume();
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtFonoKeyTyped
 
-    public void limpiarTabla(JTable tabla){
-        try {
-	            DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
-	            int filas=tabla.getRowCount();
-	            for (int i = 0;filas>i; i++) {
-	                modelo.removeRow(0);
-	            }
-	        } catch (Exception e) {
-	            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
-	        }
-	    }
+    private void Validar(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Validar
+        ValidadorDeRut v = new ValidadorDeRut();
+        String val = txtRut.getText();
         
-        //refrescar tabla 
-        public void refreshtabla(){
+        FormatoRut a = new FormatoRut();
+        try {
+            if (v.validarRut(val) == true) {
+                txtRut.setText(a.getRutFormato(val).toString());
+            } else {
+                if(val.length()>=8){
+                JOptionPane.showMessageDialog(this, "Rut no valido");
+                txtRut.requestFocus();
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(IFIngresoChofer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_Validar
+
+    private void txtRutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyTyped
+        char car = evt.getKeyChar();
+        if ((car == '.' || car == '-' )) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Debe ingresar rut sin puntos ni guion");
+            
+        }   
+    }//GEN-LAST:event_txtRutKeyTyped
+
+    public void limpiarTabla(JTable tabla) {
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+            int filas = tabla.getRowCount();
+            for (int i = 0; filas > i; i++) {
+                modelo.removeRow(0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al limpiar la tabla.");
+        }
+    }
+
+    //refrescar tabla 
+    public void refreshtabla() {
         limpiarTabla(jTable1);
         try {
-            
+
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
             String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("SELECT COD_CHOFER,NOMBRE,APELLIDO,RUT,FONO FROM CHOFER");
-            
+            s.execute("SELECT COD_CHOFER,NOMBRE,RUT,FONO FROM CHOFER");
+
             ResultSet rs = s.getResultSet();
             rsm = rs.getMetaData();
             ArrayList<Object[]> data = new ArrayList<>();
             data.clear();
-            while(rs.next()){
+            while (rs.next()) {
                 Object[] rows = new Object[rsm.getColumnCount()];
-                for(int i=0;i< rows.length;i++){
-                    rows[i]=rs.getObject(i+1);
-                    
+                for (int i = 0; i < rows.length; i++) {
+                    rows[i] = rs.getObject(i + 1);
+
                 }
-                
+
                 data.add(rows);
-                
+
             }
-            dtm = (DefaultTableModel)this.jTable1.getModel();
+            dtm = (DefaultTableModel) this.jTable1.getModel();
             for (int i = 0; i < data.size(); i++) {
                 dtm.addRow(data.get(i));
-                
+
             }
         } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
@@ -268,12 +277,10 @@ public class IFIngresoChofer extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtFono;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtRut;

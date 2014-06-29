@@ -4,6 +4,8 @@
  */
 package Frames;
 
+import Codigo.FormatoRut;
+import Codigo.ValidadorDeRut;
 import Codigo.cliente;
 import Codigo.conexion;
 import java.awt.Toolkit;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRExporter;
@@ -85,30 +88,16 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
         txtGiro = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        btnGenerar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("INGRESO CLIENTES ::: TRANSPORTES EDSON");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setText("Nombre");
 
         jLabel5.setText("Comuna");
-
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
-            }
-        });
-
-        txtRazon.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRazonKeyTyped(evt);
-            }
-        });
 
         btnIngresar.setText("Guardar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -117,23 +106,25 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
             }
         });
 
-        txtComuna.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtComunaKeyTyped(evt);
+        jLabel7.setText("Fono");
+
+        txtRut.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRutFocusLost(evt);
             }
         });
-
-        jLabel7.setText("Fono");
+        txtRut.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtRutKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRutKeyTyped(evt);
+            }
+        });
 
         jLabel6.setText("Ciudad");
 
-        jLabel2.setText("RUT");
-
-        txtCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCiudadKeyTyped(evt);
-            }
-        });
+        jLabel2.setText("RUT (sin puntos ni guión)");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,12 +136,6 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        txtFono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtFonoKeyTyped(evt);
-            }
-        });
-
         jLabel9.setText("WEB");
 
         jLabel10.setText("Giro");
@@ -159,20 +144,7 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Razón");
 
-        txtGiro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtGiroKeyTyped(evt);
-            }
-        });
-
         jLabel4.setText("Dirección");
-
-        btnGenerar.setText("Generar");
-        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -182,64 +154,55 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(btnIngresar)
-                        .addGap(49, 49, 49)
-                        .addComponent(btnGenerar)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnIngresar)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtGiro, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRazon, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRut, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel5))
+                                    .addGap(18, 18, 18))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(28, 28, 28)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(37, 37, 37)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtFono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                                .addComponent(txtCiudad, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtComuna, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtRazon, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtGiro, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5))
-                            .addGap(18, 18, 18))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addGap(28, 28, 28)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(37, 37, 37)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtComuna, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                        .addComponent(txtCiudad, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtFono, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtWeb, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,12 +245,10 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
                     .addComponent(jLabel10)
                     .addComponent(jLabel7)
                     .addComponent(txtFono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGenerar)
-                    .addComponent(btnIngresar))
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addComponent(btnIngresar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -436,60 +397,40 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
     }
-    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
-
+    private void txtRutFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutFocusLost
+        ValidadorDeRut v = new ValidadorDeRut();
+        String val = txtRut.getText();
+        
+        FormatoRut a = new FormatoRut();
         try {
-            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
-            Connection conn = DriverManager.getConnection(url);
-            conn.setSchema("EDSON");
-
-            String ubicacion = System.getProperty("user.dir") + "/src/Reportes/cliente.jasper";
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(ubicacion);
-            JasperPrint print = JasperFillManager.fillReport(jasperReport, null, conn);
-            JasperViewer view = new JasperViewer(print, false);
-            view.setVisible(true);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
+            if (v.validarRut(val) == true) {
+                txtRut.setText(a.getRutFormato(val).toString());
+            } else {
+                if(val.length()>=8){
+                JOptionPane.showMessageDialog(this, "Rut no valido");
+                txtRut.requestFocus();
+                }
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(IFIngresoChofer.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnGenerarActionPerformed
 
-    private void txtFonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFonoKeyTyped
-        if(!Character.isDigit(evt.getKeyChar()) && !Character.isISOControl(evt.getKeyChar()))
-    {
-        Toolkit.getDefaultToolkit().beep();
-        evt.consume();
-    }
-    }//GEN-LAST:event_txtFonoKeyTyped
+    }//GEN-LAST:event_txtRutFocusLost
 
-    private void txtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadKeyTyped
-       char car = evt.getKeyChar();
-        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtCiudadKeyTyped
+    private void txtRutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyPressed
+     
+    }//GEN-LAST:event_txtRutKeyPressed
 
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtNombreKeyTyped
-
-    private void txtRazonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtRazonKeyTyped
-
-    private void txtGiroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGiroKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtGiroKeyTyped
-
-    private void txtComunaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComunaKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtComunaKeyTyped
+    private void txtRutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyTyped
+         char car = evt.getKeyChar();
+        if ((car == '.' || car == '-' )) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Debe ingresar rut sin puntos ni guion");
+            
+        }          
+    }//GEN-LAST:event_txtRutKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGenerar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

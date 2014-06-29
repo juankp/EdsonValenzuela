@@ -40,11 +40,11 @@ public class IFAnularFactura extends javax.swing.JInternalFrame {
         cbxNumero = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         btnAnular = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("ANULAR FACTURA ::: TRANSPORTES EDSON");
 
         cbxNumero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -58,32 +58,39 @@ public class IFAnularFactura extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Seleccione el número de la  factura que desea anular: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel1)
-                        .addGap(40, 40, 40)
-                        .addComponent(cbxNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(93, 93, 93)
+                            .addComponent(jLabel1)
+                            .addGap(40, 40, 40)
+                            .addComponent(cbxNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(208, 208, 208)
-                        .addComponent(btnAnular)))
-                .addContainerGap(148, Short.MAX_VALUE))
+                        .addComponent(btnAnular, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel2)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
-                .addComponent(btnAnular)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addComponent(btnAnular, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -104,6 +111,10 @@ public class IFAnularFactura extends javax.swing.JInternalFrame {
             f.cond_venta = "-";
             f.orden_c = "-";
             f.guia_d = "-";
+            f.cod_camion = 0;
+            f.cod_rampla = 0;
+            f.cod_chofer = 0;
+            f.rut = "-";
             
             
             
@@ -167,5 +178,6 @@ public class IFAnularFactura extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAnular;
     private javax.swing.JComboBox cbxNumero;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

@@ -47,8 +47,6 @@ public class IFModificarChofer extends javax.swing.JInternalFrame {
         txtFono = new javax.swing.JTextField();
         cbxRut = new javax.swing.JComboBox();
         btnModificar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        txtApellido = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -72,19 +70,8 @@ public class IFModificarChofer extends javax.swing.JInternalFrame {
                 txtNombreActionPerformed(evt);
             }
         });
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
-            }
-        });
 
         txtCod.setEditable(false);
-
-        txtFono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtFonoKeyTyped(evt);
-            }
-        });
 
         cbxRut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbxRut.addActionListener(new java.awt.event.ActionListener() {
@@ -100,15 +87,6 @@ public class IFModificarChofer extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Apellido:");
-
-        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtApellidoKeyTyped(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,30 +95,24 @@ public class IFModificarChofer extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4)
-                                .addGap(16, 16, 16))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(56, 56, 56)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addGap(28, 28, 28)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbxRut, 0, 84, Short.MAX_VALUE)
                             .addComponent(txtNombre)
                             .addComponent(txtFono))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtApellido))))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCod, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(147, 147, 147)
                         .addComponent(btnModificar)))
@@ -158,16 +130,14 @@ public class IFModificarChofer extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtFono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(btnModificar)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
@@ -218,7 +188,7 @@ public class IFModificarChofer extends javax.swing.JInternalFrame {
                 txtNombre.setText(rs.getString("NOMBRE"));
                 txtCod.setText(rs.getString("COD_CHOFER"));
                 txtFono.setText(rs.getString("FONO"));
-                txtApellido.setText(rs.getString("APELLIDO"));
+             
                 
             }
             conn.close();
@@ -240,10 +210,9 @@ public class IFModificarChofer extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("UPDATE CHOFER SET NOMBRE = '" + txtNombre.getText() + "',"
-                    + " FONO = '" + txtFono.getText() + "',"
-                    + " APELLIDO = '" + txtApellido.getText() + "'"
-                    + " where RUT = '" + rut + "' ");
+            s.execute("UPDATE CHOFER SET NOMBRE = '" + txtNombre.getText().toUpperCase() + "',"
+                    + " FONO = '" + txtFono.getText() + "'"
+                    + " WHERE RUT = '" +rut+ "' ");
             
            
             conn.close();
@@ -253,8 +222,7 @@ public class IFModificarChofer extends javax.swing.JInternalFrame {
         txtFono.setText(" ");
         txtNombre.setText(" ");
         txtCod.setText(" ");
-        txtApellido.setText(" ");
-        
+       
         
         
             
@@ -262,21 +230,6 @@ public class IFModificarChofer extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtNombreKeyTyped
-
-    private void txtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtApellidoKeyTyped
-
-    private void txtFonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFonoKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'0' || car>'9')) evt.consume();
-    }//GEN-LAST:event_txtFonoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -286,8 +239,6 @@ public class IFModificarChofer extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCod;
     private javax.swing.JTextField txtFono;
     private javax.swing.JTextField txtNombre;

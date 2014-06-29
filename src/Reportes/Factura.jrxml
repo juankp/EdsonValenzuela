@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ed82f03c-fd08-47bd-b17f-95ad90d2bfeb">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="48"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="Direccion" class="java.lang.String"/>
 	<parameter name="rut" class="java.lang.String"/>
 	<parameter name="senores" class="java.lang.String"/>
@@ -129,22 +129,15 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{anio}]]></textFieldExpression>
 			</textField>
-			<textField pattern="h.mm a">
-				<reportElement x="298" y="0" width="61" height="20" uuid="51314a8c-270c-456d-b4e5-343e4300f7ff"/>
-				<textElement>
-					<font fontName="Arial" size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement x="333" y="0" width="40" height="20" uuid="c6760b53-4304-4b72-bc23-8ac02081bd5c"/>
+				<reportElement x="319" y="0" width="40" height="20" uuid="c6760b53-4304-4b72-bc23-8ac02081bd5c"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<text><![CDATA[Chofer:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="359" y="0" width="59" height="20" uuid="243f1b93-871d-4231-bdfd-95c4bf6f27a1"/>
+				<reportElement x="345" y="0" width="83" height="20" uuid="243f1b93-871d-4231-bdfd-95c4bf6f27a1"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
 				</textElement>
@@ -190,21 +183,21 @@
 				<textFieldExpression><![CDATA[$P{descripcion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="29" y="43" width="69" height="20" uuid="2293c61e-19d9-461b-8e4d-eb0ca9056bea"/>
+				<reportElement x="29" y="43" width="69" height="148" uuid="2293c61e-19d9-461b-8e4d-eb0ca9056bea"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{cantidad}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="422" y="43" width="76" height="20" uuid="89f86fec-d1c7-42f5-abb1-ded484a7b013"/>
+				<reportElement x="422" y="43" width="76" height="148" uuid="89f86fec-d1c7-42f5-abb1-ded484a7b013"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{punitario}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="498" y="43" width="100" height="20" uuid="17704608-4fcb-4182-8e0d-dd1aaee73830"/>
+				<reportElement x="498" y="43" width="100" height="148" uuid="17704608-4fcb-4182-8e0d-dd1aaee73830"/>
 				<textElement>
 					<font fontName="Arial" size="8"/>
 				</textElement>

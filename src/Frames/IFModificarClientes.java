@@ -4,10 +4,14 @@
  */
 package Frames;
 
+import Codigo.FormatoRut;
+import Codigo.ValidadorDeRut;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -59,7 +63,6 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("MODIFICAR CLIENTES ::: TRANSPORTES EDSON");
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -75,7 +78,7 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
         jLabel38.setText("Web:");
 
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel39.setText("Rut:");
+        jLabel39.setText("Rut: (sin puntos ni guión)");
 
         jLabel52.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel52.setText("Ciudad:");
@@ -99,9 +102,15 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
             }
         });
 
+        txtRut.setEditable(false);
         txtRut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRutActionPerformed(evt);
+            }
+        });
+        txtRut.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtRutFocusLost(evt);
             }
         });
 
@@ -110,20 +119,10 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
                 txtRazonActionPerformed(evt);
             }
         });
-        txtRazon.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRazonKeyTyped(evt);
-            }
-        });
 
         txtGiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtGiroActionPerformed(evt);
-            }
-        });
-        txtGiro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtGiroKeyTyped(evt);
             }
         });
 
@@ -143,11 +142,6 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
                 txtCiudadActionPerformed(evt);
             }
         });
-        txtCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCiudadKeyTyped(evt);
-            }
-        });
 
         txtDireccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,11 +152,6 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
         txtComuna.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtComunaActionPerformed(evt);
-            }
-        });
-        txtComuna.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtComunaKeyTyped(evt);
             }
         });
 
@@ -213,7 +202,7 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
                     .addComponent(jLabel55))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtComuna)
+                    .addComponent(txtComuna, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                     .addComponent(txtFono, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCiudad, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtDireccion))
@@ -227,9 +216,9 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
                     .addComponent(txtWeb))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(222, 222, 222)
+                .addGap(272, 272, 272)
                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(370, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,9 +265,9 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel37)
                             .addComponent(txtGiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(33, 33, 33)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();
@@ -323,7 +312,7 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         
         
-        String rut = cbxnombre.getSelectedItem().toString();
+        String nombre = cbxnombre.getSelectedItem().toString();
         try {
             
             
@@ -333,19 +322,20 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("UPDATE CLIENTE SET RAZON = '" + txtRazon.getText() + "',"
-                    + " GIRO = '" + txtGiro.getText() + "',"
-                    + " DIRECCION = '" + txtDireccion.getText() + "',"
-                    + " COMUNA = '" + txtComuna.getText() + "',"
-                    + " CIUDAD = '" + txtCiudad.getText() + "',"
+            s.execute("UPDATE CLIENTE SET RAZON = '" + txtRazon.getText().toUpperCase() + "',"
+                    + " GIRO = '" + txtGiro.getText().toUpperCase() + "',"
+                    + " RUT = '" + txtRut.getText() + "',"
+                    + " DIRECCION = '" + txtDireccion.getText().toUpperCase() + "',"
+                    + " COMUNA = '" + txtComuna.getText().toUpperCase() + "',"
+                    + " CIUDAD = '" + txtCiudad.getText().toUpperCase() + "',"
                     + " FONO = '" + txtFono.getText() + "',"
-                    + " EMAIL = '" + txtEmail.getText() + "',"
-                    + " WEB = '" + txtWeb.getText() + "'"
-                    + " where RUT = '" + rut + "' ");
+                    + " EMAIL = '" + txtEmail.getText().toUpperCase() + "',"
+                    + " WEB = '" + txtWeb.getText().toUpperCase() + "'"
+                    + " where NOMBRE = '" + nombre + "' ");
             
            
             conn.close();
-            JOptionPane.showMessageDialog(null, "Se han actualizado correctamente los datos de "+rut);
+            JOptionPane.showMessageDialog(null, "Se han actualizado correctamente los datos de "+nombre);
         
            //Limpiar Campos 
         txtRut.setText(" ");
@@ -422,30 +412,26 @@ public class IFModificarClientes extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_cbxnombreActionPerformed
 
-    private void txtRazonKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRazonKeyTyped
-
-    private void txtGiroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGiroKeyTyped
-       char car = evt.getKeyChar();
-if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtGiroKeyTyped
-
-    private void txtComunaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComunaKeyTyped
-       char car = evt.getKeyChar();
-if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtComunaKeyTyped
-
-    private void txtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiudadKeyTyped
-      char car = evt.getKeyChar();
-if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtCiudadKeyTyped
-
     private void txtFonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFonoKeyTyped
        char car = evt.getKeyChar();
 if((car<'0' || car>'9')) evt.consume();
     }//GEN-LAST:event_txtFonoKeyTyped
+
+    private void txtRutFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRutFocusLost
+        ValidadorDeRut v = new ValidadorDeRut();
+        String val = txtRut.getText();
+        
+        FormatoRut a = new FormatoRut();
+        try {
+            if (v.validarRut(val) == true) {
+                txtRut.setText(a.getRutFormato(val).toString());
+            } else {
+                JOptionPane.showMessageDialog(this, "Rut no valido");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(IFIngresoChofer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtRutFocusLost
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModificar;

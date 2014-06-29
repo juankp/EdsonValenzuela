@@ -63,12 +63,6 @@ public class IFModificarCamion extends javax.swing.JInternalFrame {
 
         txtCod.setEditable(false);
 
-        txtMarca.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtMarcaKeyTyped(evt);
-            }
-        });
-
         txtanio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtanioKeyTyped(evt);
@@ -247,11 +241,6 @@ public class IFModificarCamion extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_cbxPatenteActionPerformed
-
-    private void txtMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMarcaKeyTyped
-        char car = evt.getKeyChar();
-        if((car<'a' || car>'z') && (car<'A' || car>'Z')) evt.consume();
-    }//GEN-LAST:event_txtMarcaKeyTyped
 
     private void txtanioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtanioKeyTyped
         char car = evt.getKeyChar();

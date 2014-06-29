@@ -58,7 +58,6 @@ public class IFVerCamiones extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setResizable(true);
         setTitle("LISTA DE CAMIONES ::: TRANSPORTES EDSON");
 
         TablaCamion.setModel(new javax.swing.table.DefaultTableModel(
@@ -90,7 +89,7 @@ public class IFVerCamiones extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(295, 295, 295)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGenerar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -99,9 +98,9 @@ public class IFVerCamiones extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(btnGenerar)
-                .addGap(23, 23, 23))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();

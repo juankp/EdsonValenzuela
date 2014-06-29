@@ -6,6 +6,8 @@
 
 package Codigo;
 
+import java.util.Date;
+
 /**
  *
  * @author Yo elijo mi pc
@@ -26,6 +28,15 @@ public class factura {
     public int cod_chofer;
     public int cod_camion;
     public int cod_rampla;
+    public String fecha;
+
+    public factura(String descripcion, String cantidad, String precio_u, String total) {
+        this.descripcion = descripcion;
+        this.cantidad = cantidad;
+        this.precio_u = precio_u;
+        this.total = total;
+       
+    }
     
     public String descripcion;
     public String cantidad;
@@ -37,6 +48,7 @@ public class factura {
     public String cond_venta;
     public String orden_c;
     public String guia_d;
+    
 
     public String getRut() {
         return rut;

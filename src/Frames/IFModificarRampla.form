@@ -81,11 +81,13 @@
                   <Component id="cbxPatente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCod" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtAnio" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="txtAnio" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCod" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -94,9 +96,9 @@
                   <Component id="txtMarca" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTipo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Component id="btnModificar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="134" max="32767" attributes="0"/>
+              <EmptySpace pref="63" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -140,9 +142,6 @@
     <Component class="javax.swing.JTextField" name="txtModelo">
     </Component>
     <Component class="javax.swing.JTextField" name="txtMarca">
-      <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMarcaKeyTyped"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAnio">
       <Events>
@@ -150,9 +149,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTipo">
-      <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTipoKeyTyped"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbxPatente">
       <Properties>
