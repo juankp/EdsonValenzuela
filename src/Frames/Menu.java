@@ -5,6 +5,7 @@
 package Frames;
 
 import Codigo.ImagenFondo;
+import Codigo.TablePacker;
 import java.sql.SQLException;
 import Codigo.conexion;
 import static java.awt.Frame.MAXIMIZED_BOTH;
@@ -578,6 +579,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
        IFVerVentas mod = new IFVerVentas();
+       
        jDesktopPane1.add(mod);
        try {
             mod.setMaximum(true);

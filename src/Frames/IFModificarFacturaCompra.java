@@ -378,8 +378,6 @@ public class IFModificarFacturaCompra extends javax.swing.JInternalFrame {
 
         jLabel31.setText("Específico:");
 
-        txtEspecifico.setEditable(false);
-
         jLabel32.setText("Total:");
 
         txtTotal.setEditable(false);

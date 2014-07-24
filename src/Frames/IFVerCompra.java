@@ -8,6 +8,7 @@ package Frames;
 
 import Codigo.Datos;
 import Codigo.DatosCompra;
+import Codigo.TablePacker;
 import Codigo.conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,10 +17,12 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -44,6 +47,7 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
     public IFVerCompra() {
         initComponents();
         refreshtabla();
+        refreshcombo();
         conexion con = new conexion();
         con.conectar();
     }
@@ -59,36 +63,47 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCompra = new javax.swing.JTable();
-        btnImprimir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cbxFiltro = new javax.swing.JComboBox();
         jSpinner1 = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
         bntListado = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        cbxCliente = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        cbxFiltro1 = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        jSpinner2 = new javax.swing.JSpinner();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblneto = new javax.swing.JLabel();
+        lbliva = new javax.swing.JLabel();
+        lbltotal = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        lblespecifico = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("LISTA DE COMPRA ::: TRANSPORTES EDSON");
+        setAutoscrolls(true);
 
         tablaCompra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "CODIGO", "NUMERO", "RUT PROVEEDOR", "FECHA", "ESPECIFICO", "EXCENTO", "DESCRIPCION", "COND. VENTA", "OC", "NETO", "IVA", "TOTAL"
+                "PROVEEDOR", "COD FACT", "FACTURA", "FECHA", "ESPECIFICO", "EXENTO", "DESCRIPCION", "COND. VENTA", "OC", "NETO", "IVA", "TOTAL"
             }
         ));
         jScrollPane1.setViewportView(tablaCompra);
-
-        btnImprimir.setText("GENERAR TODO");
-        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImprimirActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Filtro:");
 
@@ -118,28 +133,195 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel4.setText("Cliente: ");
+
+        cbxCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxCliente.setEnabled(false);
+        cbxCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxClienteActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Mes:");
+
+        cbxFiltro1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE" }));
+        cbxFiltro1.setEnabled(false);
+        cbxFiltro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxFiltro1ActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Año:");
+
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(2014, 1992, 2100, 1));
+        jSpinner2.setEnabled(false);
+        jSpinner2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner2StateChanged(evt);
+            }
+        });
+
+        jCheckBox1.setLabel("Filtro por Cliente");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(cbxFiltro1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jCheckBox1)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jCheckBox1)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cbxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxFiltro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Totales Tabla:");
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Neto:");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("I.V.A:");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("Total:");
+
+        lblneto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblneto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblneto.setText(".");
+
+        lbliva.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbliva.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbliva.setText(".");
+
+        lbltotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lbltotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbltotal.setText(".");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("Específico:");
+
+        lblespecifico.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblespecifico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblespecifico.setText(".");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbltotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblespecifico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)
+                            .addComponent(lbliva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(lblneto, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(145, 145, 145))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(lblneto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbliva)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(lblespecifico))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(lbltotal))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
-                .addContainerGap(341, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(179, 179, 179)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnImprimir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(322, 322, 322)
                 .addComponent(bntListado)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -154,67 +336,104 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
                     .addComponent(cbxFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 84, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(bntListado)
-                            .addComponent(btnImprimir))
-                        .addGap(30, 30, 30))))
+                    .addComponent(jLabel5)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(bntListado)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        try {
-            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+    public void refreshcombo() {
+            
+               
+            try {
+                DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+                Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
             String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
-            
-            String ubicacion = System.getProperty("user.dir")+"/src/Reportes/compra.jasper";
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(ubicacion);
-            JasperPrint print = JasperFillManager.fillReport(jasperReport, null,conn);
-            JasperViewer view = new JasperViewer(print,false);
-            view.setVisible(true);
-            
-             conn.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
-        }
-    }//GEN-LAST:event_btnImprimirActionPerformed
+                Statement s = conn.createStatement();
+                s.execute("SELECT * FROM PROVEEDOR");
+                ResultSet rs = s.getResultSet();
 
+                while (rs.next()) {
+                    modeloCombo.addElement(rs.getObject("RAZON_PROV"));
+                }
+                conn.close();
+                cbxCliente.setModel(modeloCombo);
+               
+            
+           
+            
+            
+
+            } catch (ClassNotFoundException | SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+
+    }    
     private void cbxFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFiltroActionPerformed
         limpiarTabla(tablaCompra);
         refreshtabla();
+        calculos();
     }//GEN-LAST:event_cbxFiltroActionPerformed
 
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         limpiarTabla(tablaCompra);
         refreshtabla();
+        calculos();
     }//GEN-LAST:event_jSpinner1StateChanged
 
     private void bntListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntListadoActionPerformed
         try {
 
             int fila = 0;
-            
+             int sumaneto=0,sumaiva=0,sumatotal=0,sumaespecifico=0;
+            DecimalFormat formateador = new DecimalFormat("$###,###'.-'");
             List resultados = new ArrayList();
             DatosCompra tipo;
             resultados.clear();
             for (fila = 0;  fila< tablaCompra.getRowCount(); fila++) {
-                tipo = new DatosCompra(String.valueOf(tablaCompra.getValueAt(fila,1)),
-                        String.valueOf(tablaCompra.getValueAt(fila,2)),String.valueOf(tablaCompra.getValueAt(fila,3)),
-                        String.valueOf(tablaCompra.getValueAt(fila,6)),String.valueOf(tablaCompra.getValueAt(fila,7)),
-                        String.valueOf(tablaCompra.getValueAt(fila,8)),String.valueOf(tablaCompra.getValueAt(fila,11)));
+                if("-".equals(tablaCompra.getValueAt(fila,6).toString())){
+                    tablaCompra.setValueAt(0, fila, 6);
+                    tablaCompra.setValueAt(0, fila, 9);
+                    tablaCompra.setValueAt(0, fila, 10);
+                    tablaCompra.setValueAt(0, fila, 11);
+                }
+                if("".equals(tablaCompra.getValueAt(fila,4).toString())){
+                    tablaCompra.setValueAt(0, fila, 4);
+                }
+                tipo = new DatosCompra(String.valueOf(tablaCompra.getValueAt(fila,3)),
+                        String.valueOf(tablaCompra.getValueAt(fila,0)),String.valueOf(tablaCompra.getValueAt(fila,2)),
+                        String.valueOf(tablaCompra.getValueAt(fila,6)),String.valueOf(formateador.format(Integer.parseInt(tablaCompra.getValueAt(fila,9).toString()))),
+                        String.valueOf(formateador.format(Integer.parseInt(tablaCompra.getValueAt(fila,10).toString()))),
+                        String.valueOf(formateador.format(Integer.parseInt(tablaCompra.getValueAt(fila,4).toString()))),
+                        String.valueOf(formateador.format(Integer.parseInt(tablaCompra.getValueAt(fila,11).toString()))));
                 resultados.add(tipo);
+                if(!"-".equals(tablaCompra.getValueAt(fila,6).toString())){
+                sumaneto = sumaneto + Integer.parseInt(tablaCompra.getValueAt(fila,9).toString());
+                sumaiva = sumaiva + Integer.parseInt(tablaCompra.getValueAt(fila,10).toString());
+                sumatotal = sumatotal + Integer.parseInt(tablaCompra.getValueAt(fila,11).toString());
+                if(!"".equals(tablaCompra.getValueAt(fila,4).toString())){
+                sumaespecifico = sumaespecifico + Integer.parseInt(tablaCompra.getValueAt(fila,4).toString());
+                }
             }
+                }
+                
+            
             Map parametro = new HashMap();
+            parametro.put("sumespecifico",formateador.format(sumaespecifico));
+            parametro.put("sumneto", formateador.format(sumaneto));
+            parametro.put("sumiva", formateador.format(sumaiva));
+            parametro.put("sumtotal", formateador.format(sumatotal));
             parametro.put("Mes", cbxFiltro.getSelectedItem());
             parametro.put("Año", jSpinner1.getValue().toString());
             String ubicacion = System.getProperty("user.dir")+"/src/Reportes/ComprasFiltradas.jasper";
@@ -229,6 +448,139 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_bntListadoActionPerformed
+    public void porCliente(){
+        int ano = Integer.parseInt(jSpinner2.getValue().toString());
+        int mes = 0;
+        if(cbxFiltro1.getSelectedItem()== "ENERO"){
+            mes = 1;
+            }
+        else{
+        if(cbxFiltro1.getSelectedItem()=="FEBRERO"){
+            mes = 2;}
+        if(cbxFiltro1.getSelectedItem()=="MARZO"){
+            mes = 3;}
+        if(cbxFiltro1.getSelectedItem()=="ABRIL"){
+            mes = 4;}
+        if(cbxFiltro1.getSelectedItem()=="MAYO"){
+            mes = 5;}
+        if(cbxFiltro1.getSelectedItem()=="JUNIO"){
+            mes = 6;}
+        if(cbxFiltro1.getSelectedItem()=="JULIO"){
+            mes = 7;}
+        if(cbxFiltro1.getSelectedItem()=="AGOSTO"){
+            mes = 8;}
+        if(cbxFiltro1.getSelectedItem()=="SEPTIEMBRE"){
+            mes = 9;}
+        if(cbxFiltro1.getSelectedItem()=="OCTUBRE"){
+            mes = 10;}
+        if(cbxFiltro1.getSelectedItem()=="NOVIEMBRE"){
+            mes = 11;}
+        if(cbxFiltro1.getSelectedItem()=="DICIEMBRE"){
+            mes = 12;}
+        
+        }
+        try {
+             ArrayList<Object[]> data = new ArrayList<>();
+            String rut = "";
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");//prueba es base de datos
+            String url = "jdbc:derby:C:/Edson;create=true;user=edson;password=edson";
+            Connection conn = DriverManager.getConnection(url);
+            //conn.setSchema("EDSON");
+            Statement s = conn.createStatement();
+            Statement s2 = conn.createStatement();
+            s2.execute("SELECT RUT_PROV,RAZON_PROV FROM PROVEEDOR WHERE RAZON_PROV = '"+cbxCliente.getSelectedItem().toString()+"'");
+            ResultSet rs2 = s2.getResultSet();
+            data.clear();
+            while(rs2.next()){
+                 rut = rs2.getString("RUT_PROV");
+            }
+          
+//            s.execute("SELECT RAZON,NUM_FACTV,RUT,COD_CHOFER,COD_CAMION,COD_RAMPLA,DESCRIPCION,CANTIDAD,PRECIO_U,TOTAL,IVA,COND_VENTA,ORDEN_C,GUIA_D,FECHA,EXCENTO FROM FACT_V INNER JOIN "
+//                    + "WHERE RUT IN (SELECT RUT FROM FACT_V WHERE RUT ='"+rut+"')");
+               s.execute("SELECT RAZON_PROV,COD_FACTC,NUM_FACTC,FECHA,ESPECIFICO,EXCENTO,DESCRIPCION,COND_VENTA,ORDEN_C,NETO,IVA,TOTAL FROM EDSON.PROVEEDOR JOIN"
+                    + " EDSON.FACT_C ON PROVEEDOR.RUT_PROV = FACT_C.RUT_PROV WHERE RAZON_PROV = '"+cbxCliente.getSelectedItem().toString()+"' AND MONTH(FECHA) = "+mes+" AND YEAR(FECHA) = "+ano+"ORDER BY NUM_FACTC");
+            
+            ResultSet rs = s.getResultSet();
+            rsm = rs.getMetaData();
+            data.clear();
+            while(rs.next()){
+                Object[] rows = new Object[rsm.getColumnCount()];
+                for(int i=0;i< rows.length;i++){
+                    rows[i]=rs.getObject(i+1);
+                    
+                }
+                
+                data.add(rows);
+                
+            }
+            dtm = (DefaultTableModel)this.tablaCompra.getModel();
+            for (int i = 0; i < data.size(); i++) {
+                dtm.addRow(data.get(i));
+                
+            }
+            conn.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        }
+    }
+    public void calculos(){
+        int fila = 0;
+        DecimalFormat formateador = new DecimalFormat("$###,###'.-'");
+        int sumaneto=0,sumaiva=0,sumatotal=0,sumaespecifico=0;
+        for (fila = 0;  fila< tablaCompra.getRowCount(); fila++) {
+                        if(!"-".equals(tablaCompra.getValueAt(fila,6).toString()) && (!"-".equals(tablaCompra.getValueAt(fila,7).toString())) && (!"-".equals(tablaCompra.getValueAt(fila,8).toString()) ) && (!"-".equals(tablaCompra.getValueAt(fila,9).toString()))) {
+                        sumaneto = sumaneto + Integer.parseInt(tablaCompra.getValueAt(fila,9).toString());
+                        sumaiva = sumaiva + Integer.parseInt(tablaCompra.getValueAt(fila,10).toString());
+                        sumatotal = sumatotal + Integer.parseInt(tablaCompra.getValueAt(fila,11).toString());
+                        if(!"".equals(tablaCompra.getValueAt(fila,4).toString())){
+                        sumaespecifico= sumaespecifico + Integer.parseInt(tablaCompra.getValueAt(fila,4).toString());
+                        }
+                }
+                 }
+        lblneto.setText(formateador.format(sumaneto));
+        lbliva.setText(formateador.format(sumaiva));
+        lbltotal.setText(formateador.format(sumatotal));
+        lblespecifico.setText(formateador.format(sumaespecifico));
+        
+    }
+    private void cbxClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxClienteActionPerformed
+
+        limpiarTabla(tablaCompra);
+        porCliente();
+        new TablePacker(TablePacker.ALL_ROWS, true).pack(tablaCompra);
+        new TablePacker(TablePacker.ALL_ROWS, true).pack(tablaCompra);
+        calculos();
+    }//GEN-LAST:event_cbxClienteActionPerformed
+
+    private void cbxFiltro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFiltro1ActionPerformed
+        limpiarTabla(tablaCompra);
+        porCliente();
+        new TablePacker(TablePacker.ALL_ROWS, true).pack(tablaCompra);
+        new TablePacker(TablePacker.ALL_ROWS, true).pack(tablaCompra);
+        calculos();
+    }//GEN-LAST:event_cbxFiltro1ActionPerformed
+
+    private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
+        limpiarTabla(tablaCompra);
+        porCliente();
+        new TablePacker(TablePacker.ALL_ROWS, true).pack(tablaCompra);
+        new TablePacker(TablePacker.ALL_ROWS, true).pack(tablaCompra);
+        calculos();
+    }//GEN-LAST:event_jSpinner2StateChanged
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if(jCheckBox1.isSelected()){
+            cbxCliente.setEnabled(true);
+            cbxFiltro1.setEnabled(true);
+            jSpinner2.setEnabled(true);
+        }
+        else{
+            cbxCliente.setEnabled(false);
+            cbxFiltro1.setEnabled(false);
+            jSpinner2.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
     public void limpiarTabla(JTable tabla){
         try {
 	            DefaultTableModel modelo=(DefaultTableModel) tabla.getModel();
@@ -279,7 +631,8 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("SELECT COD_FACTC,NUM_FACTC,RUT_PROV,FECHA,ESPECIFICO,EXCENTO,DESCRIPCION,COND_VENTA,ORDEN_C,NETO,IVA,TOTAL FROM FACT_C WHERE MONTH(FECHA) = "+mes+" AND YEAR(FECHA) = "+ano+"" );
+            s.execute("SELECT RAZON_PROV,COD_FACTC,NUM_FACTC,FECHA,ESPECIFICO,EXCENTO,DESCRIPCION,COND_VENTA,ORDEN_C,NETO,IVA,TOTAL FROM EDSON.PROVEEDOR JOIN"
+                    + " EDSON.FACT_C ON PROVEEDOR.RUT_PROV = FACT_C.RUT_PROV WHERE MONTH(FECHA) = "+mes+" AND YEAR(FECHA) = "+ano+" ORDER BY NUM_FACTC");
             
             ResultSet rs = s.getResultSet();
             rsm = rs.getMetaData();
@@ -307,13 +660,30 @@ public class IFVerCompra extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntListado;
-    private javax.swing.JButton btnImprimir;
+    private javax.swing.JComboBox cbxCliente;
     private javax.swing.JComboBox cbxFiltro;
+    private javax.swing.JComboBox cbxFiltro1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JLabel lblespecifico;
+    private javax.swing.JLabel lbliva;
+    private javax.swing.JLabel lblneto;
+    private javax.swing.JLabel lbltotal;
     private javax.swing.JTable tablaCompra;
     // End of variables declaration//GEN-END:variables
 }

@@ -21,6 +21,8 @@ public class DatosCompra {
         this.condicion = condicion;
         this.total = total;
     }
+    
+    
 
     public String getNumero() {
         return numero;
@@ -77,6 +79,26 @@ public class DatosCompra {
     public void setTotal(String total) {
         this.total = total;
     }
+
+    public DatosCompra(String numero, String proveedor, String fecha, String descripcion, String orden, String condicion,String especifico, String total) {
+        this.numero = numero;
+        this.proveedor = proveedor;
+        this.fecha = fecha;
+        this.descripcion = descripcion;
+        this.orden = orden;
+        this.condicion = condicion;
+        this.especifico = especifico;
+        this.total = total;
+        
+    }
+
+    public String getEspecifico() {
+        return especifico;
+    }
+
+    public void setEspecifico(String especifico) {
+        this.especifico = especifico;
+    }
     
-    String numero,proveedor,fecha,descripcion,orden,condicion,total;
+    String numero,proveedor,fecha,descripcion,orden,condicion,total,especifico;
 }

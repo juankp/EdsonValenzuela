@@ -153,6 +153,8 @@ public class IFCompra extends javax.swing.JInternalFrame {
 
         jLabel23.setText("$");
 
+        SpinCant.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(1.0d), Double.valueOf(0.0d), null, Double.valueOf(0.001d)));
+
         jLabel22.setText("Precio Unitario:");
 
         txtPreciou.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -185,8 +187,8 @@ public class IFCompra extends javax.swing.JInternalFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SpinCant, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SpinCant, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -567,17 +569,17 @@ public class IFCompra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbxProveedorActionPerformed
 //Agrega un elemento a la tabla de compra.
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        int cant,precio,subtotal=0;
+        double cant,precio,subtotal=0;
         int iva,total;
         DefaultTableModel modelo = (DefaultTableModel) tablaCompra.getModel();
-        cant = Integer.parseInt(SpinCant.getValue().toString());
-        precio = Integer.parseInt(txtPreciou.getText());
+        cant = Double.parseDouble(SpinCant.getValue().toString());
+        precio =Double.parseDouble(txtPreciou.getText());
 
         Object[] data = new Object[4];
         data[0] = SpinCant.getValue();
         data[2] = txtPreciou.getText();
         data[1]= txtDesc.getText();
-        data[3]= (cant*precio);
+        data[3]= (int)Math.ceil(cant*precio);
 
         modelo.addRow(data);
         tablaCompra.setModel(modelo);
@@ -588,12 +590,13 @@ public class IFCompra extends javax.swing.JInternalFrame {
 
         for (int fila = 0;  fila< tablaCompra.getRowCount(); fila++) {
 
-            subtotal = subtotal + Integer.parseInt(String.valueOf(tablaCompra.getValueAt(fila, 3)));
+            subtotal = subtotal + Double.parseDouble(String.valueOf(tablaCompra.getValueAt(fila, 3)));
 
         }
 
-        txtSubtotal.setText(String.valueOf(subtotal));
-        iva = (int)(subtotal * 0.19);
+        txtSubtotal.setText(String.valueOf((int)subtotal));
+        iva = (int)Math.ceil(subtotal * 0.19); //REDONDEA AL ENTERO SUPERIOR
+        
         if(ChboxExcento.isSelected())
         {
             iva = 0;
@@ -648,7 +651,7 @@ public class IFCompra extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("INSERT INTO FACT_C (NUM_FACTC,RUT_PROV,CANTIDAD,NETO,IVA,TOTAL,DESCRIPCION,ESPECIFICO,EXCENTO,ORDEN_C,GUIA_D,COND_VENTA,FECHA,PRECIO_U) VALUES ('"+numero+"','"+tipo.rut+"','"+tipo.cantidad+"','"+txtSubtotal.getText()+"','"+tipo.iva+"','"+txtTotal.getText()+"','"+tipo.descripcion+"','"+tipo.especifico+"','"+exento+"','"+tipo.orden_c+"','"+tipo.guia_d+"','"+tipo.cond_venta+"','"+tipo.fecha+"','"+tipo.precio_u+"')");
+            s.execute("INSERT INTO FACT_C (NUM_FACTC,RUT_PROV,CANTIDAD,NETO,IVA,TOTAL,DESCRIPCION,ESPECIFICO,EXCENTO,ORDEN_C,GUIA_D,COND_VENTA,FECHA,PRECIO_U) VALUES ('"+numero+"','"+tipo.rut+"','"+tipo.cantidad+"','"+txtSubtotal.getText()+"','"+tipo.iva+"','"+txtTotal.getText()+"','"+tipo.descripcion.toUpperCase()+"','"+tipo.especifico+"','"+exento+"','"+tipo.orden_c+"','"+tipo.guia_d+"','"+tipo.cond_venta+"','"+tipo.fecha+"','"+tipo.precio_u+"')");
             JOptionPane.showMessageDialog(null, "Se ha ingresado correctamente la factura");
             limpiar();
         } catch (Exception e) {

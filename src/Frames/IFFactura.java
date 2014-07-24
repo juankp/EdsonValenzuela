@@ -4,6 +4,8 @@
  */
 package Frames;
 
+import Codigo.NumberToLetterConverter;
+import static Codigo.NumberToLetterConverter.convertNumberToLetter;
 import Codigo.Numero_a_Letra;
 import Codigo.factura;
 import java.awt.HeadlessException;
@@ -25,6 +27,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -41,6 +44,8 @@ public class IFFactura extends javax.swing.JInternalFrame {
     
     
     private  Numero_a_Letra NL = new  Numero_a_Letra();
+    private NumberToLetterConverter NC = new NumberToLetterConverter();
+    
     int codigo,codigo2,codigo3,codigo4;
    
     
@@ -312,11 +317,11 @@ public class IFFactura extends javax.swing.JInternalFrame {
         jLabel23 = new javax.swing.JLabel();
         SpinCant = new javax.swing.JSpinner();
         jLabel22 = new javax.swing.JLabel();
-        txtPreciou = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         txtDesc = new javax.swing.JTextArea();
+        txtPreciou = new javax.swing.JTextField();
         ChboxExcento = new javax.swing.JCheckBox();
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -338,6 +343,12 @@ public class IFFactura extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("N°");
+
+        txtnumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnumeroKeyTyped(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -593,6 +604,12 @@ public class IFFactura extends javax.swing.JInternalFrame {
         txtDesc.setRows(5);
         jScrollPane5.setViewportView(txtDesc);
 
+        txtPreciou.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPreciouKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -604,13 +621,13 @@ public class IFFactura extends javax.swing.JInternalFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SpinCant, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
+                        .addComponent(SpinCant, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPreciou, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtPreciou, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel27)
                         .addGap(18, 18, 18)
@@ -790,6 +807,7 @@ public class IFFactura extends javax.swing.JInternalFrame {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         int cant,precio,subtotal=0;
         int iva,total;
+        try{
         DefaultTableModel modelo = (DefaultTableModel) tablaFactura.getModel();
         cant = Integer.parseInt(SpinCant.getValue().toString());
         precio = Integer.parseInt(txtPreciou.getText());
@@ -814,7 +832,8 @@ public class IFFactura extends javax.swing.JInternalFrame {
         }
 
         txtSubtotal.setText(String.valueOf(subtotal));
-        iva = (int)(subtotal * 0.19);
+        iva = (int)Math.ceil(subtotal * 0.19); //REDONDEO AL ENTERO SUPERIOR
+       
         if(ChboxExcento.isSelected())
         {
             iva = 0;
@@ -822,6 +841,9 @@ public class IFFactura extends javax.swing.JInternalFrame {
         Txtiva.setText(Integer.toString(iva));
         total = (int)(subtotal + iva);
         txtTotal.setText(Integer.toString(total));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e);
+        }
 
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -847,22 +869,22 @@ public class IFFactura extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnQuitarFilaActionPerformed
     public void limpiar()
     {
-       txtdireccion.setText(" ");
+       txtdireccion.setText("");
         jDateChooser1.setCalendar(null);
-        txtDesc.setText(" ");
-        txtcomuna.setText(" ");
-        txtciudad.setText(" ");
-        txtgiro.setText(" ");
-        txttelefono.setText(" ");
-        txtcond.setText(" ");
-        txtguia.setText(" ");
-        Txtiva.setText(" ");
-        txtTotal.setText(" ");
-        txtrut.setText(" ");
-        txtnumero.setText(" ");
-        txtoc.setText(" ");
+        txtDesc.setText("");
+        txtcomuna.setText("");
+        txtciudad.setText("");
+        txtgiro.setText("");
+        txttelefono.setText("");
+        txtcond.setText("");
+        txtguia.setText("");
+        Txtiva.setText("");
+        txtTotal.setText("");
+        txtrut.setText("");
+        txtnumero.setText("");
+        txtoc.setText("");
         cbxChofer.setSelectedItem(0);
-        txtSubtotal.setText(" ");
+        txtSubtotal.setText("");
         
         try {
             DefaultTableModel modelo=(DefaultTableModel) tablaFactura.getModel();
@@ -884,6 +906,7 @@ public class IFFactura extends javax.swing.JInternalFrame {
         int iva,total2,total,subtotal = 0;
         int dia,mes,ano;
         String mesletras = null;
+        DecimalFormat formateador = new DecimalFormat("###,###'.-'");
 
         dia = jDateChooser1.getCalendar().get(Calendar.DAY_OF_MONTH);
         mes = jDateChooser1.getCalendar().get(Calendar.MONTH)+ 1;
@@ -954,13 +977,69 @@ public class IFFactura extends javax.swing.JInternalFrame {
                 iva = 0;
                 total = subtotal;
             }
-
+            int sub1=0,sub2=0,sub3=0,sub4=0,sub5=0,punitario1=0,punitario2=0,punitario3=0,punitario4=0,punitario5=0;
+            //variables donde se obtienen los subtotales de cada detalle desde la tabla
+            if(tablaFactura.getRowCount()>0){
+            sub1 = Integer.parseInt(tablaFactura.getValueAt(0, 0).toString()) * Integer.parseInt(tablaFactura.getValueAt(0, 2).toString());
+            punitario1 = Integer.parseInt(tablaFactura.getValueAt(0, 2).toString());
+             parametro.put("cantidad", tablaFactura.getValueAt(0, 0).toString());
+              parametro.put("descripcion", tablaFactura.getValueAt(0, 1).toString().toUpperCase());
+              parametro.put("punitario", String.valueOf(formateador.format(punitario1)));
+               parametro.put("total", String.valueOf(formateador.format(sub1)));
+            }else{
+                parametro.put("punitario", "");
+                 parametro.put("total", "");
+            }
+            if(tablaFactura.getRowCount()>1){
+            sub2 = Integer.parseInt(tablaFactura.getValueAt(1, 0).toString()) * Integer.parseInt(tablaFactura.getValueAt(1, 2).toString());
+            punitario2 = Integer.parseInt(tablaFactura.getValueAt(1, 2).toString());
+            parametro.put("cantidad2", tablaFactura.getValueAt(1, 0).toString());
+            parametro.put("descripcion2", tablaFactura.getValueAt(1, 1).toString().toUpperCase());
+            parametro.put("punitario2", String.valueOf(formateador.format(punitario2)));
+            parametro.put("totaldos", String.valueOf(formateador.format(sub2)));
+            }else{
+                parametro.put("punitario2", "");
+                parametro.put("totaldos", "");
+            }
+            if(tablaFactura.getRowCount()>2){
+            sub3 = Integer.parseInt(tablaFactura.getValueAt(2, 0).toString()) * Integer.parseInt(tablaFactura.getValueAt(2, 2).toString());
+            punitario3= Integer.parseInt(tablaFactura.getValueAt(2, 2).toString());
+             parametro.put("cantidad3", tablaFactura.getValueAt(2, 0).toString());
+             parametro.put("descripcion3", tablaFactura.getValueAt(2, 1).toString().toUpperCase());
+             parametro.put("punitario3", String.valueOf(formateador.format(punitario3)));
+             parametro.put("totaltres", String.valueOf(formateador.format(sub3)));
+            }else{
+                parametro.put("punitario3", "");
+                parametro.put("totaltres","");
+            }
+            if(tablaFactura.getRowCount()>3){
+            sub4 = Integer.parseInt(tablaFactura.getValueAt(3, 0).toString()) * Integer.parseInt(tablaFactura.getValueAt(3, 2).toString());
+            punitario4 = Integer.parseInt(tablaFactura.getValueAt(3, 2).toString());
+             parametro.put("cantidad4", tablaFactura.getValueAt(3, 0).toString());
+             parametro.put("descripcion4", tablaFactura.getValueAt(3, 1).toString().toUpperCase());
+             parametro.put("punitario4", String.valueOf(formateador.format(punitario4)));
+             parametro.put("totalcuatro", String.valueOf(formateador.format(sub4)));
+            }else{
+                parametro.put("punitario4", "");
+                parametro.put("totalcuatro", "");
+            }
+            if(tablaFactura.getRowCount()>4){
+            sub5 = Integer.parseInt(tablaFactura.getValueAt(4, 0).toString()) * Integer.parseInt(tablaFactura.getValueAt(4, 2).toString());
+            punitario5 = Integer.parseInt(tablaFactura.getValueAt(4, 2).toString());
+            parametro.put("cantidad5", tablaFactura.getValueAt(4, 0).toString());
+             parametro.put("descripcion5", tablaFactura.getValueAt(4, 1).toString().toUpperCase());
+              parametro.put("punitario5", String.valueOf(formateador.format(punitario5)));
+              parametro.put("totalcinco", String.valueOf(formateador.format(sub5)));
+            }else{
+                 parametro.put("punitario5", "");
+                 parametro.put("totalcinco", "");
+            }
+            //variables donde se obtienen los precios unitarios de cada detalle desde la tabla
+         
+            
             String ubicacion = System.getProperty("user.dir")+"/src/Reportes/Factura.jasper";
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(ubicacion);
-            parametro.put("cantidad", tipo.cantidad);
-            parametro.put("descripcion", tipo.descripcion.toUpperCase());
-            parametro.put("punitario", tipo.precio_u);
-            parametro.put("total", tipo.total);
+           
             parametro.put("Direccion", txtdireccion.getText());
             parametro.put("rut", txtrut.getText());
             parametro.put("senores", (String)cbxsenores.getSelectedItem());
@@ -968,13 +1047,17 @@ public class IFFactura extends javax.swing.JInternalFrame {
             parametro.put("ciudad", txtciudad.getText());
             parametro.put("telefono", txttelefono.getText());
             parametro.put("comuna", txtcomuna.getText());
+           if(total < 10000000){
+               parametro.put("numeroletras", (String.valueOf(NC.convertNumberToLetter(total))));
+           }else{
             parametro.put("numeroletras", NL.Convertir(Integer.toString(total),true));
+           }
             parametro.put("condicion", txtcond.getText().toUpperCase());
             parametro.put("oc", txtoc.getText());
             parametro.put("guia", txtguia.getText());
-            parametro.put("neto", Integer.toString(subtotal));
-            parametro.put("iva", Integer.toString(iva));
-            parametro.put("total2", Integer.toString(total));
+            parametro.put("neto", String.valueOf(formateador.format(subtotal)));
+            parametro.put("iva", String.valueOf(formateador.format(iva)));
+            parametro.put("total2", String.valueOf(formateador.format(total)));
             parametro.put("dia", Integer.toString(dia));
             parametro.put("anio", Integer.toString(ano));
             parametro.put("mes", mesletras);
@@ -996,6 +1079,7 @@ public class IFFactura extends javax.swing.JInternalFrame {
         int dia,mes,año;
         int fila=0;
         String exento = "no";
+        
         iva = (int) ((Integer.parseInt(tablaFactura.getValueAt(0, 3).toString()))*0.19);
         total = Integer.parseInt(tablaFactura.getValueAt(0, 3).toString());
 
@@ -1004,9 +1088,9 @@ public class IFFactura extends javax.swing.JInternalFrame {
 
         for (fila = 1;  fila< tablaFactura.getRowCount(); fila++) {
 
-            tipo.descripcion= tipo.descripcion + "+\n" + (String.valueOf(tablaFactura.getValueAt(fila,1)));
-            tipo.cantidad = tipo.cantidad + "+\n" + String.valueOf(tablaFactura.getValueAt(fila,0));
-            tipo.precio_u = tipo.precio_u + "+\n" + String.valueOf(tablaFactura.getValueAt(fila,2));
+            tipo.descripcion= tipo.descripcion + ".-\n" + (String.valueOf(tablaFactura.getValueAt(fila,1)));
+            tipo.cantidad = tipo.cantidad + ".-\n" + String.valueOf(tablaFactura.getValueAt(fila,0));
+            tipo.precio_u = tipo.precio_u + ".-\n" + String.valueOf(tablaFactura.getValueAt(fila,2));
             tipo.total = tipo.total + "\n" + String.valueOf(tablaFactura.getValueAt(fila,3));
             iva = (int) (iva + (Integer.parseInt(tablaFactura.getValueAt(fila, 3).toString()))*0.19);
             total = total + Integer.parseInt(tablaFactura.getValueAt(fila, 3).toString());
@@ -1024,7 +1108,7 @@ public class IFFactura extends javax.swing.JInternalFrame {
             mes = jDateChooser1.getCalendar().get(Calendar.MONTH)+ 1;
             año = jDateChooser1.getCalendar().get(Calendar.YEAR);
 
-            tipo.fecha = año+"-"+mes+"-"+dia;
+            tipo.fecha = dia+"."+mes+"."+año;
             tipo.rut= txtrut.getText();
             tipo.cod_chofer = obtenerCodigoChofer();
             tipo.cod_camion = obtenerCodigoCamion();
@@ -1113,6 +1197,20 @@ public class IFFactura extends javax.swing.JInternalFrame {
             txtTotal.setText(String.valueOf(total));
         }
     }//GEN-LAST:event_ChboxExcentoActionPerformed
+
+    private void txtnumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnumeroKeyTyped
+         char car = evt.getKeyChar();
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtnumeroKeyTyped
+
+    private void txtPreciouKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPreciouKeyTyped
+         char car = evt.getKeyChar();
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPreciouKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox ChboxExcento;

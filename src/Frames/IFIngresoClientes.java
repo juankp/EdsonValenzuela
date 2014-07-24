@@ -136,6 +136,12 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        txtFono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFonoKeyTyped(evt);
+            }
+        });
+
         jLabel9.setText("WEB");
 
         jLabel10.setText("Giro");
@@ -429,6 +435,13 @@ public class IFIngresoClientes extends javax.swing.JInternalFrame {
             
         }          
     }//GEN-LAST:event_txtRutKeyTyped
+
+    private void txtFonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFonoKeyTyped
+         char car = evt.getKeyChar();
+        if ((car < '0' || car > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtFonoKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
