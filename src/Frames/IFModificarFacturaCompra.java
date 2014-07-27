@@ -560,7 +560,7 @@ public class IFModificarFacturaCompra extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("SELECT * FROM FACT_C where CAST(COD_FACTC AS CHAR) = '" + cod + "'");
+            s.execute("SELECT * FROM FACT_C where CAST(COD_FACTC AS CHAR(4)) = '" + cod + "'");
             ResultSet rs = s.getResultSet();
 
             while (rs.next()) {
@@ -681,7 +681,7 @@ public class IFModificarFacturaCompra extends javax.swing.JInternalFrame {
                     + " NETO = '" + txtSubtotal.getText() + "',"
                     + " IVA = '" + tipo.iva + "',"
                     + " TOTAL = '" + tipo.total + "'"
-                    + " where CAST(COD_FACTC AS CHAR) = '" + numero + "' ");
+                    + " where CAST(COD_FACTC AS CHAR(4)) = '" + numero + "' ");
             
            
             conn.close();
@@ -817,7 +817,7 @@ public class IFModificarFacturaCompra extends javax.swing.JInternalFrame {
                         "FROM PROVEEDOR \n" +
                         "WHERE RUT_PROV IN (SELECT RUT_PROV \n" +
                         "FROM FACT_C \n" +
-                        "WHERE CAST(COD_FACTC AS CHAR) = '" + cod + "')");
+                        "WHERE CAST(COD_FACTC AS CHAR(4)) = '" + cod + "')");
             ResultSet rs = s.getResultSet();
 
             while (rs.next()) {

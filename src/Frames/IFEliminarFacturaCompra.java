@@ -96,7 +96,7 @@ public class IFEliminarFacturaCompra extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        String cod = cbxEliminar.getSelectedItem().toString();
+        int cod = Integer.parseInt(cbxEliminar.getSelectedItem().toString());
         try {
             
             
@@ -106,7 +106,7 @@ public class IFEliminarFacturaCompra extends javax.swing.JInternalFrame {
             Connection conn = DriverManager.getConnection(url);
             //conn.setSchema("EDSON");
             Statement s = conn.createStatement();
-            s.execute("DELETE FROM FACT_C where CAST(COD_FACTC AS CHAR) = '" + cod + "' ");
+            s.execute("DELETE FROM FACT_C where CAST(COD_FACTC AS CHAR(4)) = '" + cod + "' ");
             
            
             conn.close();
